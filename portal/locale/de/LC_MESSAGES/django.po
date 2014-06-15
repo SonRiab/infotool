@@ -1,0 +1,208 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-15 17:41+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:12
+msgid "Language Code"
+msgstr "Sprachcode"
+
+#: models.py:14
+msgid "Format: xx_XX, ex: de_DE"
+msgstr "Format: xx_XX, Bsp.: de_DE"
+
+#: models.py:15 models.py:19 models.py:102 models.py:164 models.py:186
+#: models.py:241
+msgid "Language"
+msgstr "Sprache"
+
+#: models.py:20
+msgid "Languages"
+msgstr "Sprachen"
+
+#: models.py:31
+msgid "Room Number"
+msgstr "Raumnummer"
+
+#: models.py:33
+msgid "Room Name"
+msgstr "Raumname"
+
+#: models.py:38 models.py:78 models.py:87 models.py:170
+msgid "Room"
+msgstr "Raum"
+
+#: models.py:39
+msgid "Rooms"
+msgstr "Räume"
+
+#: models.py:53 models.py:73
+msgid "Start"
+msgstr "Start"
+
+#: models.py:54 models.py:74
+msgid "End"
+msgstr "Ende"
+
+#: models.py:57 models.py:61 models.py:76 models.py:100 models.py:168
+msgid "Seminar"
+msgstr ""
+
+#: models.py:58
+msgid "Seminars"
+msgstr "Seminare"
+
+#: models.py:81
+msgid "Seminar Unit"
+msgstr "Seminareinheit"
+
+#: models.py:82
+msgid "Seminar Units"
+msgstr "Seminareinheiten"
+
+#: models.py:103
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:105
+msgid "Description"
+msgstr "Beschreibung"
+
+#: models.py:109
+msgid "Extended Seminar Information"
+msgstr "Erweiterte Seminar-Information"
+
+#: models.py:110
+msgid "Extended Seminar Informations"
+msgstr "Erweiterte Seminar-Informationen"
+
+#: models.py:121
+msgid "Prename"
+msgstr "Vorname"
+
+#: models.py:123
+msgid "Name"
+msgstr "Name"
+
+#: models.py:125
+msgid "Email"
+msgstr "E-Mail"
+
+#: models.py:136 models.py:166 models.py:243
+msgid "Contact"
+msgstr "Kontakt"
+
+#: models.py:137
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: models.py:142
+msgid "Contact Name"
+msgstr "Kontaktname"
+
+#: models.py:159
+msgid "Groupname"
+msgstr "Gruppenname"
+
+#: models.py:161
+msgid "Arrival"
+msgstr "Ankunft"
+
+#: models.py:162
+msgid "Departure"
+msgstr "Abfahrt"
+
+#: models.py:173
+msgid "Visitor Group"
+msgstr "Besuchergruppe"
+
+#: models.py:174
+msgid "Visitor Groups"
+msgstr "Besuchergruppen"
+
+#: models.py:187
+msgid "Navigation Title"
+msgstr "Navigation-Titel"
+
+#: models.py:191 models.py:208
+msgid "Navigation Item"
+msgstr "Navigationspunkt"
+
+#: models.py:192
+msgid "Navigation Items"
+msgstr "Navigationspunkte"
+
+#: models.py:209
+msgid "Site Title"
+msgstr "Seitentitel"
+
+#: models.py:211
+msgid "Site Content"
+msgstr "Seiteninhalt"
+
+#: models.py:212 models.py:244
+msgid "Visible"
+msgstr "Sichtbar"
+
+#: models.py:214
+msgid "Audio File"
+msgstr "Audiodatei"
+
+#: models.py:219
+msgid "Site"
+msgstr "Seite"
+
+#: models.py:220
+msgid "Sites"
+msgstr "Seiten"
+
+#: models.py:246
+msgid "Category Name"
+msgstr "Kategriename"
+
+#: models.py:248
+msgid "Category Placholder"
+msgstr "Kategorie Platzhalter"
+
+#: models.py:250
+msgid "Placeholder text which will be displayed in the form as hint."
+msgstr "Platzhalter-Text der als Hinweis im Formular angezeigt wird."
+
+#: models.py:253
+msgid "Category"
+msgstr "Kategrie"
+
+#: models.py:254
+msgid "Categories"
+msgstr "Kategrien"
+
+#: models.py:273
+msgid "Feedback Category"
+msgstr "Feedback Kategorie"
+
+#: models.py:274
+msgid "Feedback Categories"
+msgstr "Feedback Kategorien"
+
+#: models.py:284
+msgid "Damage Category"
+msgstr "Schadenskategorie"
+
+#: models.py:285
+msgid "Damage Categories"
+msgstr "Schadenskategorien"
