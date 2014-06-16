@@ -29,9 +29,12 @@ class Language(models.Model):
     """
     languageCode = models.CharField(verbose_name=_(u'Language Code'),
                                     max_length=5,
-                                    help_text=_(u'Format: xx_XX, ex: de_DE'))
+                                    help_text=_(u'Format: <a href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">'
+                                                u'ISO 639-1 codes</a>'))
     language = models.CharField(verbose_name=_(u'Language'),
                                 max_length=255,)
+    native = models.CharField(verbose_name=_(u'Language'),
+                              max_length=255,)
 
     class Meta:
         verbose_name = _(u'Language')
@@ -39,6 +42,22 @@ class Language(models.Model):
 
     def __unicode__(self):
         return self.language
+
+
+class House(models.Model):
+    """
+        :Author:    Rene Jablonski
+        :Contact:   rene@vnull.de
+    """
+    name = models.CharField(verbose_name=_(u'House Name'),
+                            max_length=255,)
+
+    class Meta:
+        verbose_name = _(u'House')
+        verbose_name_plural = _(u'Houses')
+
+    def __unicode__(self):
+        return self.name
 
 
 class Room(models.Model):
@@ -50,7 +69,10 @@ class Room(models.Model):
                               max_length=255,)
     name = models.CharField(verbose_name=_(u'Room Name'),
                             max_length=255,
-                            blank=True, )
+                            blank=True,)
+    floor = models.IntegerField(verbose_name=_(u'Floor'))
+    house = models.ForeignKey(House,
+                              verbose_name=_(u'House'))
 
     class Meta:
         verbose_name = _(u'Room')
@@ -63,6 +85,44 @@ class Room(models.Model):
         return result
 
 
+class Contact(models.Model):
+    """
+        :Author:    Rene Jablonski
+        :Contact:   rene@vnull.de
+    """
+    prename = models.CharField(verbose_name=_(u'Prename'),
+                               max_length=255,)
+    name = models.CharField(verbose_name=_(u'Name'),
+                            max_length=255,)
+    email = models.CharField(verbose_name=_(u'Email'),
+                             max_length=255,
+                             blank=True,
+                             default=u"",)
+
+    # the mobile and telephone number aren't in use
+    # mobile = models.CharField(max_length=255)
+    #tel = models.CharField(max_length=255)
+    # #room = models.ForeignKey(Room, null=True)
+
+    class Meta:
+        verbose_name = _(u'Contact')
+        verbose_name_plural = _(u'Contacts')
+
+    def contact_name(self):
+        return u'%s %s' % (self.prename, self.name)
+
+    contact_name.short_description = _(u'Contact Name')
+
+    def __unicode__(self):
+        return u'%s (%s)' % (self.contact_name(), self.email)
+
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = (u'prename', u'name', u'email',)
+    list_display_links = (u'prename', u'name', u'email',)
+    search_fields = (u'prename', u'name', u'email',)
+
+
 class Seminar(models.Model):
     """
         :Author:    Rene Jablonski
@@ -70,6 +130,8 @@ class Seminar(models.Model):
     """
     start = models.DateTimeField(verbose_name=_(u'Start'),)
     end = models.DateTimeField(verbose_name=_(u'End'),)
+    contact = models.ForeignKey(Contact,
+                                verbose_name=_(u'Contact'),)
 
     class Meta:
         verbose_name = _(u'Seminar')
@@ -129,44 +191,6 @@ class SeminarExtended(models.Model):
 
     def __unicode__(self):
         return self.title
-
-
-class Contact(models.Model):
-    """
-        :Author:    Rene Jablonski
-        :Contact:   rene@vnull.de
-    """
-    prename = models.CharField(verbose_name=_(u'Prename'),
-                               max_length=255,)
-    name = models.CharField(verbose_name=_(u'Name'),
-                            max_length=255,)
-    email = models.CharField(verbose_name=_(u'Email'),
-                             max_length=255,
-                             blank=True,
-                             default=u"",)
-
-    # the mobile and telephone number aren't in use
-    # mobile = models.CharField(max_length=255)
-    #tel = models.CharField(max_length=255)
-    # #room = models.ForeignKey(Room, null=True)
-
-    class Meta:
-        verbose_name = _(u'Contact')
-        verbose_name_plural = _(u'Contacts')
-
-    def contact_name(self):
-        return u'%s %s' % (self.prename, self.name)
-
-    contact_name.short_description = _(u'Contact Name')
-
-    def __unicode__(self):
-        return u'%s (%s)' % (self.contact_name(), self.email)
-
-
-class ContactAdmin(admin.ModelAdmin):
-    list_display = (u'prename', u'name', u'email',)
-    list_display_links = (u'prename', u'name', u'email',)
-    search_fields = (u'prename', u'name', u'email',)
 
 
 class VisitorGroup(models.Model):

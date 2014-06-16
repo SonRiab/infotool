@@ -29,6 +29,7 @@ admin.site.register(Language)
 
 # these stuff will be removed or disabled
 admin.site.register(Room)
+admin.site.register(House)
 admin.site.register(VisitorGroup)
 admin.site.register(Seminar)
 admin.site.register(SeminarUnit)

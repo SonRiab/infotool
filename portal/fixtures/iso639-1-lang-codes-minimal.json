@@ -1,0 +1,3 @@
+[{"model":"portal.language","pk":"0","fields":{"languageCode":"de","language":"Deutsch","native":"Deutsch"}},
+{"model":"portal.language","pk":"1","fields":{"languageCode":"en","language":"Englisch","native":"English"}},
+{"model":"portal.language","pk":"2","fields":{"languageCode":"pl","language":"Polnisch","native":"polski"}}]

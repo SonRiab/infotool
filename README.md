@@ -1,7 +1,7 @@
 Information Portal
 ==================
 
- This software is the result of a university course.  
+ This software is the result of an university course.  
 
 Requirements
 ------------
