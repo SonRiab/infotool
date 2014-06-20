@@ -17,15 +17,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from django.conf.urls import patterns, include, url
-
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from portal import views as portal_views
+from booking import views as booking_views
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'infotool.views.home', name='home'),
+    #url(r'^$', portal_views.SiteView.as_view(), name='home', pk=1),
     # url(r'^blog/', include('blog.urls')),
 
+    #url(r'^$', booking_views.IndexView.as_view(), name='index'),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^tinymce/', include('tinymce.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+)
+
+site_pattern = patterns('',
+    url(r'(?P<pk>\d+)/', portal_views.SiteView.as_view(), ),
+)
+
+urlpatterns += i18n_patterns('',
+    url(r'site/', include(site_pattern, namespace='site'), ),
 )

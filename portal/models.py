@@ -27,10 +27,11 @@ class Language(models.Model):
         :Author:    Rene Jablonski
         :Contact:   rene@vnull.de
     """
-    languageCode = models.CharField(verbose_name=_(u'Language Code'),
+    language_code = models.CharField(verbose_name=_(u'Language Code'),
                                     max_length=5,
-                                    help_text=_(u'Format: <a href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">'
-                                                u'ISO 639-1 codes</a>'))
+                                    help_text=_(u'Format: '
+                                                u'<a href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">'
+                                                u'ISO 639-1</a>'))
     language = models.CharField(verbose_name=_(u'Language'),
                                 max_length=255,)
     native = models.CharField(verbose_name=_(u'Language'),
@@ -42,47 +43,6 @@ class Language(models.Model):
 
     def __unicode__(self):
         return self.language
-
-
-class House(models.Model):
-    """
-        :Author:    Rene Jablonski
-        :Contact:   rene@vnull.de
-    """
-    name = models.CharField(verbose_name=_(u'House Name'),
-                            max_length=255,)
-
-    class Meta:
-        verbose_name = _(u'House')
-        verbose_name_plural = _(u'Houses')
-
-    def __unicode__(self):
-        return self.name
-
-
-class Room(models.Model):
-    """
-        :Author:    Rene Jablonski
-        :Contact:   rene@vnull.de
-    """
-    number = models.CharField(verbose_name=_(u'Room Number'),
-                              max_length=255,)
-    name = models.CharField(verbose_name=_(u'Room Name'),
-                            max_length=255,
-                            blank=True,)
-    floor = models.IntegerField(verbose_name=_(u'Floor'))
-    house = models.ForeignKey(House,
-                              verbose_name=_(u'House'))
-
-    class Meta:
-        verbose_name = _(u'Room')
-        verbose_name_plural = _(u'Rooms')
-
-    def __unicode__(self):
-        result = self.number
-        if not self.name:
-            result = u'%s (%s)' % (result, self.name)
-        return result
 
 
 class Contact(models.Model):
@@ -123,136 +83,28 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = (u'prename', u'name', u'email',)
 
 
-class Seminar(models.Model):
-    """
-        :Author:    Rene Jablonski
-        :Contact:   rene@vnull.de
-    """
-    start = models.DateTimeField(verbose_name=_(u'Start'),)
-    end = models.DateTimeField(verbose_name=_(u'End'),)
-    contact = models.ForeignKey(Contact,
-                                verbose_name=_(u'Contact'),)
-
-    class Meta:
-        verbose_name = _(u'Seminar')
-        verbose_name_plural = _(u'Seminars')
-
-    def __unicode__(self):
-        return u'%s %s - %s' % (_(u'Seminar'),
-                                self.start.strftime('%d.%m.%y %H:%M'),
-                                self.end.strftime('%d.%m.%y %H:%M'))
-
-
-class SeminarUnit(models.Model):
-    """
-        This is the link between a seminar and rooms
-
-        :Author:    Rene Jablonski
-        :Contact:   rene@vnull.de
-    """
-    start = models.DateTimeField(verbose_name=_(u'Start'),)
-    end = models.DateTimeField(verbose_name=_(u'End'),)
-    seminar = models.ForeignKey(Seminar,
-                                verbose_name=_(u'Seminar'),)
-    room = models.ForeignKey(Room,
-                             verbose_name=_(u'Room'),)
-
-    class Meta:
-        verbose_name = _(u'Seminar Unit')
-        verbose_name_plural = _(u'Seminar Units')
-
-    def __unicode__(self):
-        return u'%s (%s %s)' % (self.seminar.seminarextended_set.filter(seminar__id=self.seminar.id,
-                                                                        language__languageCode="de_DE").title,
-                                _('Room'),
-                                self.room.number)
-
-
-class SeminarExtended(models.Model):
-    """
-        This is an extention to the seminar to provide language support
-        for title and description
-
-        :Author:    Rene Jablonski
-        :contact:   rene@vnull.de
-    """
-    seminar = models.ForeignKey(Seminar,
-                                verbose_name=_(u'Seminar'),)
-    language = models.ForeignKey(Language,
-                                 verbose_name=_(u'Language'),)
-    title = models.CharField(verbose_name=_(u'Title'),
-                             max_length=255,)
-    description = models.TextField(verbose_name=_(u'Description'),
-                                   blank=True,)
-
-    class Meta:
-        verbose_name = _(u'Extended Seminar Information')
-        verbose_name_plural = _(u'Extended Seminar Informations')
-
-    def __unicode__(self):
-        return self.title
-
-
-class VisitorGroup(models.Model):
-    """
-        :Author:    Rene Jablonski
-        :Contact:   rene@vnull.de
-    """
-    groupname = models.CharField(verbose_name=_(u'Groupname'),
-                                 max_length=255,)
-    arrival = models.DateTimeField(verbose_name=_(u'Arrival'),)
-    departure = models.DateTimeField(verbose_name=_(u'Departure'),)
-    language = models.ForeignKey(Language,
-                                 verbose_name=_(u'Language'),)
-    contact = models.ForeignKey(Contact,
-                                verbose_name=_(u'Contact'),)
-    seminar = models.ForeignKey(Seminar,
-                                verbose_name=_(u'Seminar'),)
-    room = models.ManyToManyField(Room,
-                                  verbose_name=_(u'Room'),)
-
-    class Meta:
-        verbose_name = _(u'Visitor Group')
-        verbose_name_plural = _(u'Visitor Groups')
-
-    def __unicode__(self):
-        return u'%s (%s)' % (self.groupname, self.contact.name)
-
-
-class NavigationItem(models.Model):
-    """
-        :Author:    Rene Jablonski
-        :Contact:   rene@vnull.de
-    """
-    language = models.ForeignKey(Language,
-                                 verbose_name=_(u'Language'),)
-    name = models.CharField(verbose_name=_(u'Navigation Title'),
-                            max_length=255,)
-
-    class Meta:
-        verbose_name = _(u'Navigation Item')
-        verbose_name_plural = _(u'Navigation Items')
-
-    def __unicode__(self):
-        return self.name
-
-
-class NavigationItemAdmin(admin.ModelAdmin):
-    list_filter = (u'language__language',)
-
-
 class Site(models.Model):
     """
         :Author:    Rene Jablonski
         :Contact:   rene@vnull.de
     """
-    navigation_item = models.ForeignKey(NavigationItem,
-                                        verbose_name=_(u'Navigation Item'),)
+    superior_site = models.ForeignKey('self',
+                                      verbose_name=_(u'Superior Site'),
+                                      default=None,
+                                      null=True,
+                                      blank=True)
+    order = models.PositiveSmallIntegerField(verbose_name=_(u'Site Order'),
+                                             default=0,
+                                             help_text=_(u'Here you can define the order of sites. '
+                                                         u'Lower numbers will be displayed first.'))
+    language = models.ForeignKey(Language,
+                                 verbose_name=_(u'Language'),)
     title = models.CharField(verbose_name=_(u'Site Title'),
                              max_length=255,)
     content = tinymce_models.HTMLField(verbose_name=_(u'Site Content'),)
     visible = models.BooleanField(verbose_name=_(u'Visible'),
                                   default=False,)
+    is_special = models.BooleanField(default=False,)
     audio_file = models.FileField(verbose_name=_(u'Audio File'),
                                   upload_to=u'uploads/',
                                   blank=True,)
@@ -260,18 +112,48 @@ class Site(models.Model):
     class Meta:
         verbose_name = _(u'Site')
         verbose_name_plural = _(u'Sites')
-
-    def site_language(self):
-        return self.navigation_item.language.language
+        ordering = [u'superior_site__title', u'language__language_code', u'order', ]
 
     def __unicode__(self):
         return self.title
 
 
+class SpecialSite(Site):
+    """
+        These sites are for special usage only! Django tags stored in db will be rendered!
+        So ensure only trusted users have permission to add or modify the content!
+        :Author:    Rene Jablonski
+        :Contact:   rene@vnull.de
+    """
+
+    class Meta:
+        verbose_name = _(u'Special Site')
+        verbose_name_plural = _(u'Special Sites')
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        self.is_special = True
+        super(SpecialSite, self).save(*args, **kwargs)
+
+
 class SiteAdmin(admin.ModelAdmin):
-    list_display = (u'title', u'navigation_item', u'site_language', u'visible',)
-    list_filter = (u'visible', u'navigation_item__name', u'navigation_item__language__language',)
-    list_editable = (u'navigation_item', u'visible',)
+    list_display = (u'title', u'superior_site', u'language', u'visible', u'order',)
+    list_filter = (u'visible', u'language',)
+    list_editable = (u'superior_site', u'visible', u'order',)
+    exclude = (u'is_special', )
+
+    def queryset(self, request):
+        return self.model.objects.filter(is_special=False)
+
+
+class SpecialSiteAdmin(admin.ModelAdmin):
+    list_display = (u'title', u'superior_site', u'language', u'visible', u'order',)
+    list_filter = (u'visible', u'language',)
+    list_editable = (u'superior_site', u'visible', u'order',)
+    exclude = (u'is_special', )
+
+    def queryset(self, request):
+        return self.model.objects.filter(is_special=True)
 
 
 class Category(models.Model):

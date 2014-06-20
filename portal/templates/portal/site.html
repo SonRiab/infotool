@@ -1,4 +1,6 @@
-"""
+{% extends "base.html" %}
+
+{% comment "License" %}
 Copyright (C) 2014  Rene Jablonski
 
 This program is free software; you can redistribute it and/or
@@ -14,16 +16,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""
+{% endcomment %}
 
-from django.contrib import admin
-from portal.models import *
+{% block title %}{{ site.title }}{% endblock %}
 
-# Register your models here.
-admin.site.register(Site, SiteAdmin)
-admin.site.register(SpecialSite, SpecialSiteAdmin)
-admin.site.register(FeedbackCategory, CategoryAdmin)
-admin.site.register(DamageCategory, CategoryAdmin)
-
-admin.site.register(Contact, ContactAdmin)
-admin.site.register(Language)
+{% block content %}
+    {% autoescape off %}
+        {{ site.content }}
+    {% endautoescape %}
+{% endblock %}

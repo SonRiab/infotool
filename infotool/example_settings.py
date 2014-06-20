@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'tinymce',
     'portal',
+    'booking',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,3 +101,7 @@ STATIC_ROOT = '/to/portal/dir'
 STATIC_URL = '/static/'
 
 TINYMCE_DEFAULT_CONFIG = {'theme': 'advanced'}
+
+TEMPLATE_DIRS = {
+    os.path.join(BASE_DIR, 'templates/'),
+}

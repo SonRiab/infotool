@@ -16,6 +16,29 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
-from django.shortcuts import render
+from django.views import generic
+from portal.models import Site, SpecialSite
+from django.utils.translation import get_language
 
-# Create your views here.
+
+class IndexView(generic.DetailView):
+    model = SpecialSite
+    template_name = u'portal/site.html'
+    #queryset = model.objects.filter(language__language_code=get_language())
+
+    def get_context_data(self, **kwargs):
+        context = super(SiteView, self).get_context_data(**kwargs)
+        context['nav_items'] = Site.objects.filter(language__language_code=get_language())
+        return context
+
+
+class SiteView(generic.DetailView):
+    model = SpecialSite
+    template_name = u'portal/site.html'
+    context_object_name = u'site'
+    #queryset = model.objects.filter(language__language_code=get_language())
+
+    def get_context_data(self, **kwargs):
+        context = super(SiteView, self).get_context_data(**kwargs)
+        context['nav_items'] = Site.objects.filter(language__language_code=get_language())
+        return context
