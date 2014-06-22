@@ -1,0 +1,6 @@
+[
+    {"model":"booking.house","pk":1,"fields":{"name":"Haupthaus"}},
+    {"model":"booking.room","pk":1,"fields":{"number":202,"name":"","floor":2,"house":1}},
+    {"model":"booking.seminar","pk":1,"fields":{"internal_title":"Chorübungen","contact":1}},
+    {"model":"booking.visitorgroup","pk":1,"fields":{"groupname":"Chor","point_of_origin":"Berlin","arrival": "2014-06-22 12:56:10", "departure": "2014-06-23 12:56:11", "language":1, "contact":1, "seminar":1}}
+]

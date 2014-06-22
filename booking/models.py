@@ -86,9 +86,7 @@ class Seminar(models.Model):
         verbose_name_plural = _(u'Seminars')
 
     def __unicode__(self):
-        return u'%s %s - %s' % (_(u'Seminar'),
-                                self.start.strftime('%d.%m.%y %H:%M'),
-                                self.end.strftime('%d.%m.%y %H:%M'))
+        return self.internal_title
 
 
 class SeminarUnit(models.Model):

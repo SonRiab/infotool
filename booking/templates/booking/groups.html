@@ -1,5 +1,3 @@
-{% extends "base.html" %}
-
 {% comment "License" %}
 Copyright (C) 2014  Rene Jablonski
 
@@ -17,17 +15,21 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 {% endcomment %}
-
-{% block title %}{{ site.title }}{% endblock %}
-
-{% load render_as_template %}
-
 {% block content %}
-    {% autoescape off %}
-        {% if site.is_special %}
-            {% render_as_template site.content %}
-        {% else %}
-            {{ site.content }}
-        {% endif %}
-    {% endautoescape %}
+    {% for group in all_groups %}
+        <div>
+            <span class="groupname">
+                {{ group.groupname }}
+            </span>
+            <ul>
+                <li>Herkunftsort: {{ group.point_of_origin }}</li>
+                <li>Ansprechpartner: {{ group.contact.contact_name }}</li>
+                <li>Räume:
+                    {% for room in group.room.all %}
+                        {{ room.house.name }}, {{ room.floor }} OG., {{ room.number }}
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
 {% endblock %}

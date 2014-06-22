@@ -21,14 +21,18 @@ from portal.models import Site, SpecialSite
 from django.utils.translation import get_language
 
 
-class IndexView(generic.DetailView):
+class IndexView(generic.TemplateView):
     model = SpecialSite
     template_name = u'portal/site.html'
-    #queryset = model.objects.filter(language__language_code=get_language())
 
     def get_context_data(self, **kwargs):
-        context = super(SiteView, self).get_context_data(**kwargs)
-        context['nav_items'] = Site.objects.filter(language__language_code=get_language())
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context[u'nav_items'] = Site.objects.filter(language__language_code=get_language(),
+                                                    superior_site=None,
+                                                    is_visible=True).order_by(u'order')
+        context[u'site'] = Site.objects.filter(language__language_code=get_language(),
+                                               superior_site=None,
+                                               is_visible=True,).order_by(u'order').first()
         return context
 
 
@@ -36,9 +40,14 @@ class SiteView(generic.DetailView):
     model = SpecialSite
     template_name = u'portal/site.html'
     context_object_name = u'site'
-    #queryset = model.objects.filter(language__language_code=get_language())
+
+    def get_queryset(self):
+        return Site.objects.filter(language__language_code=get_language(),
+                                   is_visible=True)
 
     def get_context_data(self, **kwargs):
         context = super(SiteView, self).get_context_data(**kwargs)
-        context['nav_items'] = Site.objects.filter(language__language_code=get_language())
+        context[u'nav_items'] = Site.objects.filter(language__language_code=get_language(),
+                                                    superior_site=None,
+                                                    is_visible=True).order_by(u'order')
         return context

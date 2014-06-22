@@ -25,11 +25,7 @@ from booking import views as booking_views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    #url(r'^$', portal_views.SiteView.as_view(), name='home', pk=1),
-    # url(r'^blog/', include('blog.urls')),
-
-    #url(r'^$', booking_views.IndexView.as_view(), name='index'),
+    url(r'^$', portal_views.IndexView.as_view(), name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
 )
@@ -39,5 +35,6 @@ site_pattern = patterns('',
 )
 
 urlpatterns += i18n_patterns('',
+    url(r'^$', portal_views.IndexView.as_view(), name='index'),
     url(r'site/', include(site_pattern, namespace='site'), ),
 )

@@ -102,8 +102,8 @@ class Site(models.Model):
     title = models.CharField(verbose_name=_(u'Site Title'),
                              max_length=255,)
     content = tinymce_models.HTMLField(verbose_name=_(u'Site Content'),)
-    visible = models.BooleanField(verbose_name=_(u'Visible'),
-                                  default=False,)
+    is_visible = models.BooleanField(verbose_name=_(u'Visible'),
+                                     default=False,)
     is_special = models.BooleanField(default=False,)
     audio_file = models.FileField(verbose_name=_(u'Audio File'),
                                   upload_to=u'uploads/',
@@ -137,9 +137,9 @@ class SpecialSite(Site):
 
 
 class SiteAdmin(admin.ModelAdmin):
-    list_display = (u'title', u'superior_site', u'language', u'visible', u'order',)
-    list_filter = (u'visible', u'language',)
-    list_editable = (u'superior_site', u'visible', u'order',)
+    list_display = (u'title', u'superior_site', u'language', u'is_visible', u'order',)
+    list_filter = (u'is_visible', u'language',)
+    list_editable = (u'superior_site', u'is_visible', u'order',)
     exclude = (u'is_special', )
 
     def queryset(self, request):
@@ -147,9 +147,9 @@ class SiteAdmin(admin.ModelAdmin):
 
 
 class SpecialSiteAdmin(admin.ModelAdmin):
-    list_display = (u'title', u'superior_site', u'language', u'visible', u'order',)
-    list_filter = (u'visible', u'language',)
-    list_editable = (u'superior_site', u'visible', u'order',)
+    list_display = (u'title', u'superior_site', u'language', u'is_visible', u'order',)
+    list_filter = (u'is_visible', u'language',)
+    list_editable = (u'superior_site', u'is_visible', u'order',)
     exclude = (u'is_special', )
 
     def queryset(self, request):
