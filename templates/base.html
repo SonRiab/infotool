@@ -18,30 +18,44 @@
 {% endcomment %}
 
 {% load i18n %}
+{% load staticfiles %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="UTF-8">
+        <meta content="width=device-width" name="viewport">
         <title>{% block title %}{% endblock %}</title>
+        <link type="text/css" rel="stylesheet" href="{% static "css/base.css" %}" charset="utf-8" media="all">
+        <link type="text/css" rel="stylesheet" href="{% static "css/icons.css" %}" charset="utf-8" media="all">
+        <script type="text/javascript" src="{% static "js/jquery-1.11.1.min.js" %}" charset="utf-8"></script>
+        <script type="text/javascript" src="{% static "js/base.js" %}" charset="utf-8"></script>
     </head>
     <body>
-        <div id="header">
-            <div id="menu">Menu</div>
-        </div>
-        <nav id="navigation">
-            <ul>
-                {% for nav_item in nav_items %}
-                    <li><a href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}">{{ nav_item.title }}</a></li>
-                {% endfor %}
-            </ul>
-        </nav>
-        <div id="content">
-            {% block content %}{% endblock %}
-        </div>
-        <div id="footer">
-            {% block footer %}{% endblock %}
+        <div id="container">
+            <div id="header">
+                <div id="logo" class="white-bg">Jugendbildungsstätte Kurt Löwenstein</div>
+                <div class="red-bg cell">
+                    <a id="navigation-toggle" href="javascript:;" onclick="toggleNavigation();" alt="navigation toggle"><span class="icon-list4"></span>Navigation</a>
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+            <div id="main">
+                <nav id="navigation">
+                    <ul>
+                        {% for nav_item in nav_items %}
+                            <li><a href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}">{{ nav_item.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <div id="footer">
+                {% block footer %}{% endblock %}
+            </div>
         </div>
     </body>
 </html>
