@@ -166,11 +166,16 @@ li {
 }
 
 #navigation > ul > li > ul > li {
-    list-style: disc outside none;
+    list-style: none;
     padding: 10px 0;
     padding: 0.625rem 0;
-    margin-left: 20px;
-    margin-left: 1.25rem;
+    margin-left: 0;
+    /*margin-left: 1.25rem;*/
+}
+
+#navigation > ul > li > ul > li > a {
+    font-size: 16px;
+    font-size: 1rem;
 }
 
 #navigation a,

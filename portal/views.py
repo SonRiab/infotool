@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 from django.views import generic
 from portal.models import Site, SpecialSite
 from django.utils.translation import get_language
+import re
 
 
 class IndexView(generic.TemplateView):
@@ -33,6 +34,7 @@ class IndexView(generic.TemplateView):
         context[u'site'] = Site.objects.filter(language__language_code=get_language(),
                                                superior_site=None,
                                                is_visible=True,).order_by(u'order').first()
+        context[u'is_selected'] = True
         return context
 
 
@@ -47,7 +49,10 @@ class SiteView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SiteView, self).get_context_data(**kwargs)
+        pattern = re.compile(u'^.+/site/(?P<pk>\d+)/$')
         context[u'nav_items'] = Site.objects.filter(language__language_code=get_language(),
                                                     superior_site=None,
                                                     is_visible=True).order_by(u'order')
+        match = pattern.match(self.request.path_info)
+        context[u'current_site_id'] = match.group(u'pk')
         return context

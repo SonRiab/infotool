@@ -19,6 +19,7 @@
 
 {% load i18n %}
 {% load staticfiles %}
+{% load nav_item %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -44,8 +45,8 @@
             <div id="main">
                 <nav id="navigation">
                     <ul>
-                        {% for nav_item in nav_items %}
-                            <li><a href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}">{{ nav_item.title }}</a></li>
+                        {% for item in nav_items %}
+                            {% nav_item item.id %}
                         {% endfor %}
                     </ul>
                 </nav>

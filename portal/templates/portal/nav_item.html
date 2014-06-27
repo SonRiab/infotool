@@ -1,0 +1,48 @@
+{% comment "License" %}
+    Copyright (C) 2014  Rene Jablonski
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; version 2
+    of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+{% endcomment %}
+
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<li>
+    <!-- {{ is_selected }} / {{ current_site_id }} -->
+    {% if is_selected == True %}
+        <a class="selected" href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}">
+    {% else %}
+        <a href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}">
+    {% endif %}
+        {{ nav_item.title }}
+    </a>
+    {% if sub_nav_items %}
+        <ul>
+            {% for sub_item in sub_nav_items %}
+                <li>
+                    <span class="icon-next2"></span>
+                    {% if is_selected == True %}
+                        <a class="selected" href="/{{ LANGUAGE_CODE }}/site/{{ sub_item.id }}">
+                    {% else %}
+                        <a href="/{{ LANGUAGE_CODE }}/site/{{ sub_item.id }}">
+                    {% endif %}
+                        {{ sub_item.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>

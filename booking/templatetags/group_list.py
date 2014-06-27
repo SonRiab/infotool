@@ -32,7 +32,7 @@ class GroupListNode(template.Node):
     """
     def render(self, context):
         groups_template = loader.get_template(u'booking/groups.html')
-        context['all_groups'] = VisitorGroup.objects.filter(arrival__lt=datetime.now(tz=timezone('Europe/Berlin')),
+        context[u'all_groups'] = VisitorGroup.objects.filter(arrival__lt=datetime.now(tz=timezone('Europe/Berlin')),
                                                             departure__gt=datetime.now(tz=timezone('Europe/Berlin')))
         return groups_template.render(context)
 
