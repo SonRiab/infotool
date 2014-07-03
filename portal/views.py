@@ -31,9 +31,11 @@ class IndexView(generic.TemplateView):
         context[u'nav_items'] = Site.objects.filter(language__language_code=get_language(),
                                                     superior_site=None,
                                                     is_visible=True).order_by(u'order')
-        context[u'site'] = Site.objects.filter(language__language_code=get_language(),
-                                               superior_site=None,
-                                               is_visible=True,).order_by(u'order').first()
+        site = Site.objects.filter(language__language_code=get_language(),
+                                   superior_site=None,
+                                   is_visible=True,).order_by(u'order').first()
+        context[u'site'] = site
+        context[u'current_site_id'] = site.id
         context[u'is_selected'] = True
         return context
 
