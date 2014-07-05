@@ -101,7 +101,9 @@ class Site(models.Model):
                                  verbose_name=_(u'Language'),)
     title = models.CharField(verbose_name=_(u'Site Title'),
                              max_length=255,)
-    content = tinymce_models.HTMLField(verbose_name=_(u'Site Content'),)
+    content = tinymce_models.HTMLField(verbose_name=_(u'Site Content'),
+                                       blank=True,
+                                       default=u'')
     is_visible = models.BooleanField(verbose_name=_(u'Visible'),
                                      default=False,)
     is_special = models.BooleanField(default=False,)

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+{% comment "License" %}
+    Copyright (C) 2014  Rene Jablonski
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; version 2
+    of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+{% endcomment %}
+
+{% load i18n %}
+{% load staticfiles %}
+{% load nav_item %}
+{% load sub_sites %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width" name="viewport">
+        <title>{% block title %}{% endblock %}</title>
+        <link type="text/css" rel="stylesheet" href="{% static "css/portal/base.css" %}" charset="utf-8" media="all">
+        <link type="text/css" rel="stylesheet" href="{% static "css/portal/icons.css" %}" charset="utf-8" media="all">
+        <script type="text/javascript" src="{% static "js/portal/jquery-1.11.1.min.js" %}" charset="utf-8"></script>
+        <script type="text/javascript" src="{% static "js/portal/jquery.cookie.js" %}" charset="utf-8"></script>
+        <script type="text/javascript" src="{% static "js/portal/base.js" %}" charset="utf-8"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                {% comment %}<div id="logo" class="white-bg">Jugendbildungsstätte Kurt Löwenstein</div>{% endcomment %}
+                <div class="red-bg cell">
+                    <a id="navigation-toggle" href="javascript:;" onclick="toggleNavigation();" alt="navigation toggle">
+                        <span class="icon-list4"></span>{% trans 'Navigation' %}
+                    </a>
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+            <div id="main">
+                <nav id="navigation">
+                    <ul>
+                        {% for item in nav_items %}
+                            <li id="nav-item-{{ item.id }}">
+                                <span>
+                                    {% nav_item item.id %}
+                                </span>
+                                {% sub_sites item.id %}
+                                {% if sub_nav_items %}
+                                    {% if is_sub_item_selected == True %}
+                                        {% comment %}<span id="toggle-icon-{{ item.id }}" class="icon-minus3"></span>{% endcomment %}
+                                        <ul id="sub-{{ item.id }}" style="display: inherit;">
+                                    {% else %}
+                                        {% comment %}<span id="toggle-icon-{{ item.id }}" class="icon-plus3"></span>{% endcomment %}
+                                        <ul id="sub-{{ item.id }}">
+                                    {% endif %}
+                                        {% for sub_item in sub_nav_items %}
+                                            <li id="nav-item-{{ sub_item.id }}">
+                                                <span>
+                                                    {% nav_item sub_item.id %}
+                                                </span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <ul>
+                        <li>
+                            <span>
+                                &nbsp;
+                            </span>
+                            <ul id="options" style="display: inherit;">
+                                <li id="language-options">
+                                    <span>
+                                        {% trans 'Language' %}
+                                    </span>
+                                    <span>
+                                        <select onchange="setLang(this)">
+                                            {% for language in supported_languages %}
+                                                <option value="{{ language.language_code }}"
+                                                        {% if language.language_code == LANGUAGE_CODE %}
+                                                            selected="selected"
+                                                        {% endif %}
+                                                        >
+                                                    {{ language.native }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </span>
+                                </li>
+                                <li id="view-options">
+                                    <span>
+                                        {% trans 'Font Size' %}
+                                    </span>
+                                    <span>
+                                        <a href="javascript:;" onclick="changeFontSize(-1);"
+                                           alt="{% trans 'decrease' %}" title="{% trans 'decrease' %}">
+                                            <span class="icon-minus3"></span>
+                                        </a>
+                                        <a href="javascript:;" onclick="changeFontSize(1);"
+                                           alt="{% trans 'increase' %}" title="{% trans 'increase' %}">
+                                            <span class="icon-plus3"></span>
+                                        </a>
+                                        <a href="javascript:;" onclick="setBaseFontSize(16);"
+                                           alt="{% trans 'reset' %}" title="{% trans 'reset' %}">
+                                            <span class="icon-erase"></span>
+                                        </a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <div id="footer">
+                {% block footer %}
+                    <span align="center">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <input name="auth_user" type="text" size="15" placeholder="{% trans 'W-LAN User' %}">
+                            <input name="auth_pass" type="password" size="15" placeholder="{% trans 'W-LAN Password' %}">
+                            <input name="redirurl" type="hidden" value="{{ redirect_url }}">
+                            <input name="accept" type="submit" value="{% trans 'Login' %}">
+                            </p>
+                        </form>
+                    </span>
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

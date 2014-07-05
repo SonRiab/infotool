@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-03 10:25+0200\n"
+"POT-Creation-Date: 2014-07-05 08:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,7 @@ msgstr ""
 "639-1</a>"
 
 #: models.py:35 models.py:37 models.py:41 models.py:101 models.py:167
+#: templates/portal/base.html:89
 msgid "Language"
 msgstr "Sprache"
 
@@ -145,3 +146,35 @@ msgstr "Schadenskategorie"
 #: models.py:211
 msgid "Damage Categories"
 msgstr "Schadenskategorien"
+
+#: templates/portal/base.html:45
+msgid "Navigation"
+msgstr "Navigation"
+
+#: templates/portal/base.html:107
+msgid "Font Size"
+msgstr "Schriftgröße"
+
+#: templates/portal/base.html:111
+msgid "decrease"
+msgstr "Verringern"
+
+#: templates/portal/base.html:115
+msgid "increase"
+msgstr "Erhöhen"
+
+#: templates/portal/base.html:119
+msgid "reset"
+msgstr "Zurücksetzen"
+
+#: templates/portal/base.html:137
+msgid "W-LAN User"
+msgstr "W-LAN Nutzer"
+
+#: templates/portal/base.html:138
+msgid "W-LAN Password"
+msgstr "W-LAN Passwort"
+
+#: templates/portal/base.html:140
+msgid "Login"
+msgstr "Anmelden"

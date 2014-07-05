@@ -17,9 +17,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from django.views import generic
-from portal.models import Site, SpecialSite
+from portal.models import Site, SpecialSite, Language
 from django.utils.translation import get_language
 import re
+
+
+def generic_context_data(context, request):
+
+    context[u'nav_items'] = Site.objects.filter(language__language_code=get_language(),
+                                                superior_site=None,
+                                                is_visible=True).order_by(u'order')
+    context[u'supported_languages'] = Language.objects.all().order_by(u'native')
+    context[u'redirect_url'] = u'http://%s%s' % (request.get_host(),
+                                                 request.get_full_path(),)
+    return context
 
 
 class IndexView(generic.TemplateView):
@@ -28,9 +39,7 @@ class IndexView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context[u'nav_items'] = Site.objects.filter(language__language_code=get_language(),
-                                                    superior_site=None,
-                                                    is_visible=True).order_by(u'order')
+        context.update(generic_context_data(context, self.request))
         site = Site.objects.filter(language__language_code=get_language(),
                                    superior_site=None,
                                    is_visible=True,).order_by(u'order').first()
@@ -51,10 +60,9 @@ class SiteView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SiteView, self).get_context_data(**kwargs)
+        context.update(generic_context_data(context, self.request))
         pattern = re.compile(u'^.+/site/(?P<pk>\d+)/$')
-        context[u'nav_items'] = Site.objects.filter(language__language_code=get_language(),
-                                                    superior_site=None,
-                                                    is_visible=True).order_by(u'order')
         match = pattern.match(self.request.path_info)
         context[u'current_site_id'] = match.group(u'pk')
+
         return context
