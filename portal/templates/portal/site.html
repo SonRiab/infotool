@@ -20,7 +20,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 {% block title %}{{ site.title }}{% endblock %}
 
+{% load i18n %}
 {% load render_as_template %}
+{% load staticfiles %}
+
+{% block css_style %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/portal/player.css" %}" charset="utf-8" media="all">
+{% endblock %}
+
+{% block js_script %}
+    <script type="text/javascript" src="{% static "js/portal/jquery.jplayer.min.js" %}" charset="utf-8"></script>
+    {% if  site.audio_file_1 and site.audio_file_2 %}
+        <script type="text/javascript">
+            $(function() {
+                $("#jquery_jplayer_1").jPlayer({
+                    ready: function () {
+                        $(this).jPlayer("setMedia", {
+                            mp3: "/media/{{ site.audio_file_1 }}",
+                            oga: "/media/{{ site.audio_file_2 }}"
+                        });
+                    },
+                    swfPath: "/static/js/portal",
+                    supplied: "mp3, oga"
+                });
+            });
+        </script>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     {% autoescape off %}
@@ -30,4 +56,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
             {{ site.content }}
         {% endif %}
     {% endautoescape %}
+    {% if site.audio_file_1 and site.audio_file_2 %}
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-container">
+        <div class="jp-interface">
+            <ul class="jp-controls">
+                <li><a href="javascript:;" class="jp-play icon-play4" tabindex="1">play</a></li>
+                <li><a href="javascript:;" class="jp-pause icon-pause3" tabindex="1">pause</a></li>
+                <li><a href="javascript:;" class="jp-stop icon-stop3" tabindex="1">stop</a></li>
+                <li><a href="javascript:;" class="jp-mute icon-mute" tabindex="1" title="mute">mute</a></li>
+                <li><a href="javascript:;" class="jp-unmute icon-sound" tabindex="1" title="unmute">unmute</a></li>
+            </ul>
+            <ul class="jp-time-container">
+                <li><span class="jp-current-time"></span>/<span class="jp-duration"></span></li>
+            </ul>
+        </div>
+        <div class="jp-no-solution">
+            <div>
+                <span class="icon-info3"></span>
+            </div>
+            <div>
+                <p>
+                    To play the media you will need to either update your browser to a recent version or update your
+                    <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

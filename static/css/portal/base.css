@@ -40,6 +40,10 @@ a:focus {
     color: #333333;
 }
 
+#content a:hover {
+    color: #EE000B;
+}
+
 a:before {
     font-family: 'icomoon';
     content: "\e897";

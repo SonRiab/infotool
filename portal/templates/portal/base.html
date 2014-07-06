@@ -31,8 +31,10 @@
         <title>{% block title %}{% endblock %}</title>
         <link type="text/css" rel="stylesheet" href="{% static "css/portal/base.css" %}" charset="utf-8" media="all">
         <link type="text/css" rel="stylesheet" href="{% static "css/portal/icons.css" %}" charset="utf-8" media="all">
+        {% block css_style %}{% endblock %}
         <script type="text/javascript" src="{% static "js/portal/jquery-1.11.1.min.js" %}" charset="utf-8"></script>
         <script type="text/javascript" src="{% static "js/portal/jquery.cookie.js" %}" charset="utf-8"></script>
+        {% block js_script %}{% endblock %}
         <script type="text/javascript" src="{% static "js/portal/base.js" %}" charset="utf-8"></script>
     </head>
     <body>

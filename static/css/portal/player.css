@@ -1,0 +1,65 @@
+div.jp-container,
+div.jp-no-solution {
+    margin-top: 10px;
+    margin-top: 0.625rem;
+}
+
+div.jp-interface {
+    display: inline-block;
+    width: 200px;
+    width: 12.5rem;
+    /*border: 1px solid gray;*/
+    text-align: center;
+}
+
+div.jp-interface,
+div.jp-no-solution {
+    padding: 5px;
+    padding: 0.3125rem;
+    background-color: #E9E9E9;
+    box-shadow: 0px 5px 5px -5px #7E7E7E;
+    box-shadow: 0.125rem 0.125rem 0.1875rem 0px #7E7E7E;
+}
+
+div.jp-interface ul {
+    list-style: none;
+    display: inline-block;
+}
+
+ul.jp-controls {
+    margin-right: 10px;
+    margin-right: 0.625rem;
+}
+
+div.jp-interface ul > li {
+    display: inline;
+    margin-left: 0;
+}
+
+ul.jp-controls > li > a {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: sub;
+    max-width: 15px;
+}
+
+ul.jp-time-container li {
+    font-size: 14px;
+    font-size: 0.875rem;
+}
+
+a.jp-stop {
+    display: none;
+}
+
+ul.jp-controls > li > a:hover {
+    color: #EE000B;
+}
+
+div.jp-no-solution > div {
+    display: inline-block;
+}
+
+#content ul.jp-controls a:hover {
+    text-decoration: none;
+}

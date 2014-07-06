@@ -31,6 +31,7 @@ var correctMaxHeight = function() {
     var maxHeight = $(document).height() - ($('#header').outerHeight() + $('#footer').outerHeight());
     $('#navigation').css('maxHeight', maxHeight + 'px');
     $('#content').css('maxHeight', (maxHeight - 2 * parseInt($('#content').css('marginTop'))) + 'px');
+    $('#content').css('height', (maxHeight - 2 * parseInt($('#content').css('marginTop'))) + 'px');
     $('#main').css('maxHeight', maxHeight + 'px');
     /* on android phones the animated slide in of the keyboard causes wrong values so we check them twice! */
     if($(document).height() - ($('#header').outerHeight() + $('#footer').outerHeight()) != maxHeight) {
