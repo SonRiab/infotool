@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-05 08:34+0200\n"
+"POT-Creation-Date: 2014-07-07 06:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:30
+#: models.py:41
 msgid "Language Code"
 msgstr "Sprachcode"
 
-#: models.py:32
+#: models.py:43
 msgid ""
 "Format: <a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO "
 "639-1</a>"
@@ -30,48 +30,48 @@ msgstr ""
 "Format: <a href=\"http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO "
 "639-1</a>"
 
-#: models.py:35 models.py:37 models.py:41 models.py:101 models.py:167
-#: templates/portal/base.html:89
+#: models.py:46 models.py:48 models.py:52 models.py:112 models.py:186
+#: templates/portal/base.html:104
 msgid "Language"
 msgstr "Sprache"
 
-#: models.py:42
+#: models.py:53
 msgid "Languages"
 msgstr "Sprachen"
 
-#: models.py:53
+#: models.py:64
 msgid "Prename"
 msgstr "Vorname"
 
-#: models.py:55
+#: models.py:66
 msgid "Name"
 msgstr "Name"
 
-#: models.py:57
+#: models.py:68
 msgid "Email"
 msgstr "E-Mail"
 
-#: models.py:68 models.py:169
+#: models.py:79 models.py:188
 msgid "Contact"
 msgstr "Kontakt"
 
-#: models.py:69
+#: models.py:80
 msgid "Contacts"
 msgstr "Kontakte"
 
-#: models.py:74
+#: models.py:85
 msgid "Contact Name"
 msgstr "Kontaktname"
 
-#: models.py:92
+#: models.py:103
 msgid "Superior Site"
 msgstr "Übergeordnete Seite"
 
-#: models.py:96
+#: models.py:107
 msgid "Site Order"
 msgstr "Reihenfolge"
 
-#: models.py:98
+#: models.py:109
 msgid ""
 "Here you can define the order of sites. Lower numbers will be displayed "
 "first."
@@ -79,102 +79,157 @@ msgstr ""
 "Hier legen Sie die Reihenfolge der Seiten in der Navigation fest. Kleinere "
 "Nummern bedeuten, dass diese Einträge zu oberst erscheinen."
 
-#: models.py:102
+#: models.py:113
 msgid "Site Title"
 msgstr "Seitentitel"
 
-#: models.py:104
+#: models.py:115
 msgid "Site Content"
 msgstr "Seiteninhalt"
 
-#: models.py:107 models.py:170
+#: models.py:118 models.py:189
 msgid "Visible"
 msgstr "Sichtbar"
 
-#: models.py:110
-msgid "Audio File"
-msgstr "Audiodatei"
+#: models.py:121
+msgid "Audio File (mp3)"
+msgstr "Audiodatei (mp3)"
 
-#: models.py:115
+#: models.py:125
+msgid ""
+"mp3 files have native support in Internet Explorer, Chrome, Safari and could "
+"be used in Flash as fallback."
+msgstr ""
+"mp3 Dateien werden im Internet Explorer, Chrome und Safari nativ "
+"unterstütztund werden für das Flash Fallback genutzt."
+
+#: models.py:127
+msgid "Audio File (ogg)"
+msgstr "Audiodatei (ogg)"
+
+#: models.py:131
+msgid "ogg files have native support in Firefox and Opera."
+msgstr "ogg Dateien werden nativ in Firefox und Opera unterstützt."
+
+#: models.py:134
 msgid "Site"
 msgstr "Seite"
 
-#: models.py:116
+#: models.py:135
 msgid "Sites"
 msgstr "Seiten"
 
-#: models.py:132
+#: models.py:151
 msgid "Special Site"
 msgstr "Spezielle Seite"
 
-#: models.py:133
+#: models.py:152
 msgid "Special Sites"
 msgstr "Spezielle Seiten"
 
-#: models.py:172
+#: models.py:191
 msgid "Category Name"
 msgstr "Kategriename"
 
-#: models.py:174
+#: models.py:193
 msgid "Category Placholder"
 msgstr "Kategorie Platzhalter"
 
-#: models.py:176
+#: models.py:195
 msgid "Placeholder text which will be displayed in the form as hint."
 msgstr "Platzhalter-Text der als Hinweis im Formular angezeigt wird"
 
-#: models.py:179
+#: models.py:198
 msgid "Category"
 msgstr "Kategrie"
 
-#: models.py:180
+#: models.py:199
 msgid "Categories"
 msgstr "Kategrien"
 
-#: models.py:199
+#: models.py:218
 msgid "Feedback Category"
 msgstr "Feedback Kategorie"
 
-#: models.py:200
+#: models.py:219
 msgid "Feedback Categories"
 msgstr "Feedback Kategorien"
 
-#: models.py:210
+#: models.py:229
 msgid "Damage Category"
 msgstr "Schadenskategorie"
 
-#: models.py:211
+#: models.py:230
 msgid "Damage Categories"
 msgstr "Schadenskategorien"
 
-#: templates/portal/base.html:45
+#: templates/portal/base.html:47
 msgid "Navigation"
 msgstr "Navigation"
 
-#: templates/portal/base.html:107
+#: templates/portal/base.html:85
+msgid "Internet"
+msgstr "Internet"
+
+#: templates/portal/base.html:91
+msgid "User"
+msgstr "Benutzer"
+
+#: templates/portal/base.html:92
+msgid "Password"
+msgstr "Passwort"
+
+#: templates/portal/base.html:93
+msgid "Login"
+msgstr "Anmelden"
+
+#: templates/portal/base.html:101
+msgid "Options"
+msgstr "Optionen"
+
+#: templates/portal/base.html:118
 msgid "Font Size"
 msgstr "Schriftgröße"
 
-#: templates/portal/base.html:111
+#: templates/portal/base.html:121
 msgid "decrease"
 msgstr "Verringern"
 
-#: templates/portal/base.html:115
+#: templates/portal/base.html:125
 msgid "increase"
-msgstr "Erhöhen"
+msgstr "Vergrößern"
 
-#: templates/portal/base.html:119
+#: templates/portal/base.html:129
 msgid "reset"
 msgstr "Zurücksetzen"
 
-#: templates/portal/base.html:137
-msgid "W-LAN User"
-msgstr "W-LAN Nutzer"
+#: templates/portal/site.html:65 templates/portal/site.html.py:67
+msgid "Play"
+msgstr "Abspielen"
 
-#: templates/portal/base.html:138
-msgid "W-LAN Password"
-msgstr "W-LAN Passwort"
+#: templates/portal/site.html:71 templates/portal/site.html.py:73
+msgid "Pause"
+msgstr "Pausieren"
 
-#: templates/portal/base.html:140
-msgid "Login"
-msgstr "Anmelden"
+#: templates/portal/site.html:77 templates/portal/site.html.py:79
+msgid "Stop"
+msgstr "Stoppen"
+
+#: templates/portal/site.html:83 templates/portal/site.html.py:85
+msgid "Mute"
+msgstr "Stummschalten"
+
+#: templates/portal/site.html:89 templates/portal/site.html.py:91
+msgid "Unmute"
+msgstr "Stummschalten deaktivieren"
+
+#: templates/portal/site.html:95 templates/portal/site.html.py:106
+msgid "Volume"
+msgstr "Lautstärke"
+
+#: templates/portal/site.html:100 templates/portal/site.html.py:102
+msgid "Maximum"
+msgstr "Maximum"
+
+#~ msgid "W-LAN User"
+#~ msgstr "W-LAN Nutzer"

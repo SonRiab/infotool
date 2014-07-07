@@ -38,7 +38,7 @@
                 <li>
                     <span class="icon-location" alt="{% trans 'Rooms' %}" title="{% trans 'Rooms' %}"></span>
                     {% for room in group.room.all %}
-                        {{ room.house.name }}, {{ room.floor }} OG., Raum {{ room.number }}
+                        {{ room.house.name }}, {{ room.floor }} {% trans 'Floor' %}, {% trans 'Room' %} {{ room.number }}
                     {% endfor %}
                 </li>
             </ul>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-03 10:27+0200\n"
+"POT-Creation-Date: 2014-07-07 07:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,15 +38,16 @@ msgstr "Raumnummer"
 msgid "Room Name"
 msgstr "Raumname"
 
-#: models.py:50
+#: models.py:50 templates/booking/groups.html:41
 msgid "Floor"
 msgstr "Etage"
 
 #: models.py:55 models.py:104 models.py:113 models.py:160
+#: templates/booking/groups.html:41
 msgid "Room"
 msgstr "Raum"
 
-#: models.py:56
+#: models.py:56 templates/booking/groups.html:39
 msgid "Rooms"
 msgstr "Räume"
 
@@ -62,7 +63,7 @@ msgstr ""
 "Dieser interne Titel wird nie angezeigt. Nutzen Sie bitte die \"Erweiterten "
 "Seminar-Informationen\" um multilinguale Titel bereitzustellen."
 
-#: models.py:82 models.py:156
+#: models.py:82 models.py:156 templates/booking/groups.html:35
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -114,7 +115,7 @@ msgstr "Erweitere Seminarinformationen"
 msgid "Groupname"
 msgstr "Gruppenname"
 
-#: models.py:149
+#: models.py:149 templates/booking/groups.html:31
 msgid "Point of Origin"
 msgstr "Herkunftsort"
 

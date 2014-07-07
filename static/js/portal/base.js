@@ -17,27 +17,11 @@
  */
 
 $(function() {
-    /*correctMaxHeight();
-    $(window).resize(function() {
-        correctMaxHeight();
-    });*/
     var baseFontSize = $.cookie('base-font-size');
     if(baseFontSize != undefined) {
         setBaseFontSize(parseInt(baseFontSize));
     }
 });
-
-var correctMaxHeight = function() {
-    var maxHeight = $(document).height() - ($('#header').outerHeight() + $('#footer').outerHeight());
-    $('#sidebar').css('maxHeight', maxHeight + 'px');
-    $('#content').css('maxHeight', (maxHeight - 2 * parseInt($('#content').css('marginTop'))) + 'px');
-    $('#content').css('height', (maxHeight - 2 * parseInt($('#content').css('marginTop'))) + 'px');
-    $('#main').css('maxHeight', maxHeight + 'px');
-    /* on android phones the animated slide in of the keyboard causes wrong values so we check them twice! */
-    if($(document).height() - ($('#header').outerHeight() + $('#footer').outerHeight()) != maxHeight) {
-        correctMaxHeight();
-    }
-}
 
 var toggleNavigation = function() {
     var sidebar = $('#sidebar');
@@ -82,7 +66,6 @@ var setBaseFontSize = function(size) {
     fontSize = size;
     $('html').css('font-size', size + 'px');
     $.cookie('base-font-size', fontSize, { path: '/' });
-    /*correctMaxHeight();*/
     $('#sidebar').attr('data-value', '-' + $('#navigation').outerWidth());
 }
 
