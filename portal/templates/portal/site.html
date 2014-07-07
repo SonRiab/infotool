@@ -61,15 +61,51 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <div id="jp_container_1" class="jp-container">
         <div class="jp-interface">
             <ul class="jp-controls">
-                <li><a href="javascript:;" class="jp-play icon-play4" tabindex="1">play</a></li>
-                <li><a href="javascript:;" class="jp-pause icon-pause3" tabindex="1">pause</a></li>
-                <li><a href="javascript:;" class="jp-stop icon-stop3" tabindex="1">stop</a></li>
-                <li><a href="javascript:;" class="jp-mute icon-mute" tabindex="1" title="mute">mute</a></li>
-                <li><a href="javascript:;" class="jp-unmute icon-sound" tabindex="1" title="unmute">unmute</a></li>
+                <li>
+                    <a href="javascript:;" class="jp-play" tabindex="1" title="{% trans 'Play' %}">
+                        <span class="icon-play3"></span>
+                        <span class="display-none">{% trans 'Play' %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="jp-pause" tabindex="1" title="{% trans 'Pause' %}">
+                        <span class="icon-pause2"></span>
+                        <span class="display-none">{% trans 'Pause' %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="jp-stop" tabindex="1" title="{% trans 'Stop' %}">
+                        <span class="icon-stop2"></span>
+                        <span class="display-none">{% trans 'Stop' %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="jp-mute" tabindex="1" title="{% trans 'Mute' %}">
+                        <span class="icon-volume-mute2"></span>
+                        <span class="display-none">{% trans 'Mute' %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="jp-unmute" tabindex="1" title="{% trans 'Unmute' %}">
+                        <span class="icon-volume-low"></span>
+                        <span class="display-none">{% trans 'Unmute' %}</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="jp-volume-bar" title="{% trans 'Volume' %}">
+                        <div class="jp-volume-bar-value red-bg"></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:;" class="jp-volume-max" tabindex="1" title="{% trans 'High' %}">
+                        <span class="icon-volume-high"></span>
+                        <span class="display-none">{% trans 'High' %}</span>
+                    </a>
+                </li>
             </ul>
-            <ul class="jp-time-container">
-                <li><span class="jp-current-time"></span>/<span class="jp-duration"></span></li>
-            </ul>
+            <div class="jp-seek-bar" title="{% trans 'Volume' %}">
+                <div class="jp-play-bar red-bg"></div>
+            </div>
         </div>
         <div class="jp-no-solution">
             <div>

@@ -1,3 +1,20 @@
+/*
+    Copyright (C) 2014  Rene Jablonski
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; version 2
+    of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
 div.jp-container,
 div.jp-no-solution {
     margin-top: 10px;
@@ -19,6 +36,7 @@ div.jp-no-solution {
     background-color: #E9E9E9;
     box-shadow: 0px 5px 5px -5px #7E7E7E;
     box-shadow: 0.125rem 0.125rem 0.1875rem 0px #7E7E7E;
+    margin-bottom: 5px;
 }
 
 div.jp-interface ul {
@@ -40,12 +58,10 @@ ul.jp-controls > li > a {
     display: inline-block;
     overflow: hidden;
     vertical-align: sub;
-    max-width: 15px;
 }
 
-ul.jp-time-container li {
-    font-size: 14px;
-    font-size: 0.875rem;
+ul.jp-controls > li > a:before {
+    content: "";
 }
 
 a.jp-stop {
@@ -56,10 +72,64 @@ ul.jp-controls > li > a:hover {
     color: #EE000B;
 }
 
+ul.jp-controls .jp-volume-container {
+    padding-top: 10px;
+    padding-top: 0.625rem;
+}
+
+div.jp-seek-bar {
+    height: 10px;
+    height: 0.625rem;
+    background-color: #333;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+div.jp-play-bar {
+    height: 10px;
+    height: 0.625rem;
+}
+
+ul.jp-controls .jp-volume-bar {
+    display: inline-block;
+    width: 50px;
+    width: 3.125rem;
+    height: 5px;
+    height: 0.3125rem;
+    text-align: left;
+    background-color: #333;
+    padding-top: 0px;
+    position: relative;
+    top: 5px;
+    top: 0.3125rem;
+    cursor: pointer;
+}
+
+ul.jp-controls .jp-volume-bar-value {
+    display: inline-block;
+    height: 5px;
+    height: 0.3125rem;
+    top: -10px;
+    top: -0.625rem;
+    text-align: left;
+    position: relative;
+    left: 0;
+}
+
+ul.jp-controls a.jp-mute,
+ul.jp-controls a.jp-unmute {
+    margin-left: 25px;
+    margin-left: 1.5625rem;
+}
+
 div.jp-no-solution > div {
     display: inline-block;
 }
 
-#content ul.jp-controls a:hover {
-    text-decoration: none;
+ul.jp-controls a:hover {
+    text-decoration: none !important;
+}
+
+.display-none {
+    display: none;
 }

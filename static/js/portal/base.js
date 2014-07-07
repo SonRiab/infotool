@@ -17,10 +17,10 @@
  */
 
 $(function() {
-    correctMaxHeight();
+    /*correctMaxHeight();
     $(window).resize(function() {
         correctMaxHeight();
-    });
+    });*/
     var baseFontSize = $.cookie('base-font-size');
     if(baseFontSize != undefined) {
         setBaseFontSize(parseInt(baseFontSize));
@@ -29,7 +29,7 @@ $(function() {
 
 var correctMaxHeight = function() {
     var maxHeight = $(document).height() - ($('#header').outerHeight() + $('#footer').outerHeight());
-    $('#navigation').css('maxHeight', maxHeight + 'px');
+    $('#sidebar').css('maxHeight', maxHeight + 'px');
     $('#content').css('maxHeight', (maxHeight - 2 * parseInt($('#content').css('marginTop'))) + 'px');
     $('#content').css('height', (maxHeight - 2 * parseInt($('#content').css('marginTop'))) + 'px');
     $('#main').css('maxHeight', maxHeight + 'px');
@@ -40,15 +40,15 @@ var correctMaxHeight = function() {
 }
 
 var toggleNavigation = function() {
-    var navigation = $('#navigation');
+    var sidebar = $('#sidebar');
     /*console.log(navigation.css('left'));*/
     /*console.log(navigation.attr('data-value'));*/
-    if(navigation.css('left') !== '0px') {
-        if(navigation.attr('data-value') === undefined) {
-            navigation.attr('data-value', navigation.css('left'));
+    if(sidebar.css('left') !== '0px') {
+        if(sidebar.attr('data-value') === undefined) {
+            sidebar.attr('data-value', sidebar.css('left'));
         }
-        navigation.show();
-        navigation.animate({
+        sidebar.show();
+        sidebar.animate({
             left: '0'
         }, 1000, function() {
             /*console.log('[animate] complete');*/
@@ -56,11 +56,11 @@ var toggleNavigation = function() {
             //to nothing
         });
     } else {
-        navigation.animate({
-            left: navigation.attr('data-value')
+        sidebar.animate({
+            left: sidebar.attr('data-value')
         }, 1000, function() {
             /*console.log('[animate] complete');*/
-            navigation.hide();
+            sidebar.hide();
             //to nothing
         });
     }
@@ -82,8 +82,8 @@ var setBaseFontSize = function(size) {
     fontSize = size;
     $('html').css('font-size', size + 'px');
     $.cookie('base-font-size', fontSize, { path: '/' });
-    correctMaxHeight();
-    $('#navigation').attr('data-value', '-' + $('#navigation').outerWidth());
+    /*correctMaxHeight();*/
+    $('#sidebar').attr('data-value', '-' + $('#navigation').outerWidth());
 }
 
 var changeFontSize = function(increment) {

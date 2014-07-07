@@ -60,15 +60,15 @@ li {
 }
 
 #header a:before,
-#navigation a:before {
+#sidebar a:before {
     content: "";
 }
 
 #content,
-#navigation {
-    max-height: 100px;
+#sidebar {
+    /*max-height: 100px;*/
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #footer {
@@ -150,61 +150,84 @@ li {
     display: inline-block;
 }
 
-#navigation {
-    left: -252px;
-    left: -15.75rem;
+#sidebar {
+    position: absolute;
+    width: 250px;
+    width: 15.625rem;
+    left: -250px;
+    left: -15.625rem;
+    float: left;
+    z-index: 999;
     box-shadow: 2px 2px 3px 0 #7E7E7E;
     box-shadow: 0.125rem 0.125rem 0.1875rem 0 #7E7E7E;
     background-color: #cccccc;
-    position: absolute;
+}
+
+#sidebar > ul,
+#navigation {
     width: 250px;
     width: 15.625rem;
     /*max-width: 50%;*/
     display: block;
     vertical-align: top;
-    float: left;
+    background-color: #cccccc;
 }
 
-#navigation > ul {
+#options-wrapper,
+#internet-form {
+    margin: 10px 0 5px 0;
+}
+
+#internet-form > li > ul {
+    padding: 10px;
+}
+
+#internet-form input {
+    width: 95%;
+}
+
+#internet-form input[type=submit] {
+    width: auto;
+}
+
+#sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-#navigation li {
+#sidebar li {
     margin: 0;
 }
 
-#navigation li > span {
+#sidebar li > span {
     padding: 5px 10px 5px 15px;
     padding: 0.3125rem 0.625rem 0.3125rem 0.9375rem;
     margin: 0;
     display: inline-block;
 }
 
-#navigation #options li {
+#sidebar #options li {
     display: table-row;
 }
 
-#navigation #options li > span {
+#sidebar #options li > span {
     display: table-cell;
 }
 
-#navigation > ul > li > span[class^="icon-"] {
-    padding: 0;
-}
-
-#navigation > ul > li > ul {
+#sidebar ul > li > ul {
     background-color: #E9E9E9;
     box-shadow: 0px 5px 5px -5px #7E7E7E inset;
-    /*margin-left: 1.25rem;*/
+}
+
+#navigation ul > li > ul {
     display: none;
 }
 
-#navigation > ul > li > ul > li {
+#sidebar ul > li > ul > li {
     list-style: none;
 }
 
-#navigation > ul > li > ul > li a {
+#sidebar ul > li > ul > li a {
     font-size: 16px;
     font-size: 1rem;
 }
@@ -248,16 +271,6 @@ li {
     margin-right: 10px;
 }
 
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 -2px 3px 0 #7E7E7E;
-    box-shadow: 0 -0.125rem 0.1875rem 0 #7E7E7E;
-    background-color: #cccccc;
-}
-
 @-ms-viewport {
     width: device-width;
 }
@@ -295,8 +308,24 @@ li {
         display: inline;
     }
 
-    #navigation {
+    #sidebar {
+        width: 255px;
+        width: 15.9375rem;
         left: 0 !important;
+        display: block !important;
         height: auto;
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    #sidebar > ul,
+    #navigation {
+        box-shadow: 2px 2px 3px 0 #7E7E7E;
+        box-shadow: 0.125rem 0.125rem 0.1875rem 0 #7E7E7E;
+    }
+
+    #options-wrapper,
+    #internet-form {
+        margin: 20px 0 5px 0;
     }
 }

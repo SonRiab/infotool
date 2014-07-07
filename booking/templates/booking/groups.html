@@ -28,15 +28,15 @@
             </span>
             <ul>
                 <li>
-                    <span class="icon-location3" alt="{% trans 'Point of Origin' %}" title="{% trans 'Point of Origin' %}"></span>
+                    <span class="icon-home2" alt="{% trans 'Point of Origin' %}" title="{% trans 'Point of Origin' %}"></span>
                     {{ group.point_of_origin }}
                 </li>
                 <li>
-                    <span class="icon-user5" alt="{% trans 'Contact' %}" title="{% trans 'Contact' %}"></span>
+                    <span class="icon-user" alt="{% trans 'Contact' %}" title="{% trans 'Contact' %}"></span>
                     {{ group.contact.contact_name }}
                 </li>
                 <li>
-                    <span class="icon-location4" alt="{% trans 'Rooms' %}" title="{% trans 'Rooms' %}"></span>
+                    <span class="icon-location" alt="{% trans 'Rooms' %}" title="{% trans 'Rooms' %}"></span>
                     {% for room in group.room.all %}
                         {{ room.house.name }}, {{ room.floor }} OG., Raum {{ room.number }}
                     {% endfor %}
