@@ -109,3 +109,11 @@ TINYMCE_DEFAULT_CONFIG = {'theme': 'advanced'}
 TEMPLATE_DIRS = {
     os.path.join(BASE_DIR, 'templates/'),
 }
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+
+EMAIL_HOST = "localhost"
+EMAIL_HOST_USER = "max@example.com"
+EMAIL_HOST_PASSWORD = "example"
+EMAIL_USE_TLS = True
