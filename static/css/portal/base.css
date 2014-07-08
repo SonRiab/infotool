@@ -232,6 +232,11 @@ li {
     font-size: 1rem;
 }
 
+#sidebar #view-options a {
+    margin-right: 5px;
+    margin-right: 0.3125rem;
+}
+
 #navigation a,
 #navigation a:hover,
 #navigation a:active,
