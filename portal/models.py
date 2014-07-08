@@ -16,7 +16,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 from django.core.exceptions import ValidationError
-
 from django.db import models
 from django.contrib import admin
 from tinymce import models as tinymce_models
@@ -186,13 +185,14 @@ class Category(models.Model):
                                  verbose_name=_(u'Language'),)
     contact = models.ForeignKey(Contact,
                                 verbose_name=_(u'Contact'),)
-    visible = models.BooleanField(verbose_name=_(u'Visible'),
-                                  default=False,)
+    is_visible = models.BooleanField(verbose_name=_(u'Visible'),
+                                     default=False,)
     name = models.CharField(verbose_name=_(u'Category Name'),
                             max_length=255,)
-    placeholder = models.CharField(verbose_name=_(u'Category Placholder'),
-                                   max_length=255,
-                                   help_text=_(u'Placeholder text which will be displayed in the form as hint.'),)
+    placeholder = models.TextField(verbose_name=_(u'Category Placholder'),
+                                   help_text=_(u'Placeholder text which will be displayed in the form.'),
+                                   blank=True,
+                                   default=u'',)
 
     class Meta:
         verbose_name = _(u'Category')
@@ -203,9 +203,9 @@ class Category(models.Model):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = (u'name', u'contact', u'visible',)
-    list_editable = (u'contact', u'visible',)
-    list_filter = (u'contact__email', u'visible',)
+    list_display = (u'name', u'contact', u'language', u'is_visible',)
+    list_editable = (u'contact', u'language', u'is_visible',)
+    list_filter = (u'contact__email', u'language', u'is_visible',)
 
 
 class FeedbackCategory(Category):

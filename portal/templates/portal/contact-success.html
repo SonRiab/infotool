@@ -1,3 +1,5 @@
+{% extends "portal/base.html" %}
+
 {% comment "License" %}
     Copyright (C) 2014  Rene Jablonski
 
@@ -13,24 +15,13 @@
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 {% endcomment %}
 
 {% load i18n %}
-{% load sub_sites %}
 
-{% get_current_language as LANGUAGE_CODE %}
+{% block title %}{% trans 'Success' %}{% endblock %}
 
-{% sub_sites nav_item.id %}
-
-<a id="link-{{ nav_item.id }}" data-id="{{ nav_item.id }}"
-{% if is_selected == True and sub_nav_items %}
-    class="selected" href="javascript:;" onclick="toggleSubNavigation(this);"
-{% elif is_selected == True %}
-    class="selected" href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}"
-{% elif sub_nav_items %}
-    href="javascript:;" onclick="toggleSubNavigation(this);"
-{% else %}
-    href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}"
-{% endif %}
-    >{{ nav_item.title }}</a>
+{% block content %}
+    <p>{% trans 'The message was sent successfully' %}</p>
+{% endblock %}

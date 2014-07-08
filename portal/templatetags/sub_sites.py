@@ -29,11 +29,10 @@ def sub_sites(context, nav_item_id):
         :Author:    Rene Jablonski
         :Contact:   rene@vnull.de
     """
-    sub_sites = SpecialSite.objects.filter(superior_site=nav_item_id, is_visible=True).order_by(u'order')
-    context[u'sub_nav_items'] = sub_sites
+    sub_sites_dict = SpecialSite.objects.filter(superior_site=nav_item_id, is_visible=True).order_by(u'order')
+    context[u'sub_nav_items'] = sub_sites_dict
     context[u'is_sub_item_selected'] = False
-    for sites in sub_sites:
+    for sites in sub_sites_dict:
         if int(context[u'current_site_id']) == sites.id:
             context[u'is_sub_item_selected'] = True
-    #return True if sub_sites.count() > 0 else False
     return u''

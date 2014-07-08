@@ -75,6 +75,18 @@
                                     {% endif %}
                                 </li>
                             {% endfor %}
+                            <li>
+                                <span>
+                                    <a id="link-feedback" {% if is_feedback_selected == True %}class="selected"{% endif %}
+                                       href="/{{ LANGUAGE_CODE }}/feedback/">{% trans 'Feedback' %}</a>
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    <a id="link-damage-report" {% if is_damage_report_selected == True %}class="selected"{% endif %}
+                                       href="/{{ LANGUAGE_CODE }}/damage-report/">{% trans 'Damage Report' %}</a>
+                                </span>
+                            </li>
                         </ul>
                     </nav>
                     <ul id="internet-form">

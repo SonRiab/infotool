@@ -1,0 +1,77 @@
+{% extends "portal/base.html" %}
+
+{% comment "License" %}
+    Copyright (C) 2014  Rene Jablonski
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; version 2
+    of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+{% endcomment %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Contact' %}{% endblock %}
+
+{% block js_script %}
+    <script type="text/javascript">
+        {% autoescape off %}
+            var placeholders = JSON.parse('{{ placeholders }}');
+        {% endautoescape %}
+
+        $(function() {
+            $('#id_subject').on('change', function(){
+                onSubjectChange();
+            });
+            onSubjectChange();
+        });
+
+        var onSubjectChange = function() {
+            var selectedSubject = $('#id_subject').val();
+            console.log(selectedSubject);
+            for(var i=0; i < placeholders.length; i++) {
+                console.log(placeholders);
+                if(placeholders[i].pk == selectedSubject) {
+                    $('#id_message').attr('placeholder', placeholders[i].fields.placeholder);
+                }
+            };
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <form action="/{{ LANGUAGE_CODE }}/{{ action_url }}" method="post">
+        {% csrf_token %}
+        {# Include the hidden fields #}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {# Include the visible fields #}
+        {% for field in form.visible_fields %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <div class="field">{{ field }}</div>
+            </div>
+            <div class="hintWrapper">
+                <label></label>
+                <div class="hint">{{ field.help_text }}</div>
+            </div>
+        {% endfor %}
+        <div class="fieldWrapper">
+            <label></label>
+            <div class="field">
+                <input type="submit" value="{% trans 'Submit' %}" />
+            </div>
+        </div>
+    </form>
+{% endblock %}

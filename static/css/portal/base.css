@@ -271,6 +271,35 @@ li {
     margin-right: 10px;
 }
 
+.fieldWrapper,
+.hintWrapper {
+    display: table-row;
+}
+
+.fieldWrapper label,
+.fieldWrapper .field,
+.hintWrapper label,
+.hintWrapper .hint {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.hintWrapper .hint {
+    padding-bottom: 16px;
+    padding-bottom: 1rem;
+}
+
+.fieldWrapper label {
+    padding-right: 25px;
+    padding-right: 1.5625rem;
+}
+
+.hintWrapper .hint {
+    font-size: 12px;
+    font-size: 0.75rem;
+    color: #aaaaaa;
+}
+
 @-ms-viewport {
     width: device-width;
 }
