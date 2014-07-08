@@ -300,6 +300,15 @@ li {
     color: #aaaaaa;
 }
 
+.fieldWrapper .field {
+    padding-right: 2px;
+    padding-right: 0.125rem;
+}
+
+textarea {
+    width: 100%;
+}
+
 @-ms-viewport {
     width: device-width;
 }
