@@ -15,9 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
-
 from django import template
-from django.template import Template, Variable, TemplateSyntaxError, loader
+from django.template import loader
 from portal.models import SpecialSite
 
 register = template.Library()
@@ -32,7 +31,7 @@ class NavigationItemNode(template.Node):
         self.site_id = site_id
 
     def render(self, context):
-        nav_item_template = loader.get_template(u'portal/nav_item.html')
+        nav_item_template = loader.get_template(u'portal/nav-item.html')
         context[u'nav_item'] = SpecialSite.objects.filter(id=self.site_id, is_visible=True).first()
         context[u'sub_nav_items'] = SpecialSite.objects.filter(superior_site=self.site_id, is_visible=True)\
             .order_by(u'order')

@@ -15,9 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
-
 from django import template
-from django.template import Template, Variable, TemplateSyntaxError, loader
+from django.template import TemplateSyntaxError, loader
 from booking.models import VisitorGroup
 from datetime import datetime
 from pytz import timezone
@@ -33,7 +32,7 @@ class GroupListNode(template.Node):
     def render(self, context):
         groups_template = loader.get_template(u'booking/groups.html')
         context[u'all_groups'] = VisitorGroup.objects.filter(arrival__lt=datetime.now(tz=timezone('Europe/Berlin')),
-                                                            departure__gt=datetime.now(tz=timezone('Europe/Berlin')))
+                                                             departure__gt=datetime.now(tz=timezone('Europe/Berlin')))
         return groups_template.render(context)
 
 

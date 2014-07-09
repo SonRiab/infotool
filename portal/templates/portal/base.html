@@ -43,7 +43,7 @@
                 {% comment %}<div id="logo" class="white-bg">Jugendbildungsstätte Kurt Löwenstein</div>{% endcomment %}
                 <div class="red-bg cell">
                     <a id="navigation-toggle" href="javascript:;" onclick="toggleNavigation();" alt="navigation toggle">
-                        <p><span class="icon-menu2"></span>{% trans 'Navigation' %}</p>
+                        <p><span class="icon-menu2"></span>{% trans 'Menu' %}</p>
                     </a>
                     <span>&nbsp;</span>
                 </div>
@@ -75,24 +75,37 @@
                                     {% endif %}
                                 </li>
                             {% endfor %}
-                            <li>
-                                <span>
-                                    <a id="link-feedback" {% if is_feedback_selected == True %}class="selected"{% endif %}
-                                       href="/{{ LANGUAGE_CODE }}/feedback/">{% trans 'Feedback' %}</a>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <a id="link-damage-report" {% if is_damage_report_selected == True %}class="selected"{% endif %}
-                                       href="/{{ LANGUAGE_CODE }}/damage-report/">{% trans 'Damage Report' %}</a>
-                                </span>
-                            </li>
                         </ul>
                     </nav>
+                    <ul id="options-wrapper">
+                        <li>
+                            <span>
+                                <a href="javascript:;" data-id="contact"
+                                   onclick="toggleSubNavigation(this);" >{% trans "Contact" %}</a>
+                            </span>
+                            <ul id="sub-contact">
+                                <li>
+                                    <span>
+                                        <a id="link-feedback" {% if is_feedback_selected == True %}class="selected"{% endif %}
+                                           href="/{{ LANGUAGE_CODE }}/feedback/">{% trans 'Feedback' %}</a>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        <a id="link-damage-report" {% if is_damage_report_selected == True %}class="selected"{% endif %}
+                                           href="/{{ LANGUAGE_CODE }}/damage-report/">{% trans 'Damage Report' %}</a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     <ul id="internet-form">
                         <li>
-                            <span>{% trans 'Internet' %}</span>
-                            <ul>
+                            <span>
+                                <a href="javascript:;" data-id="internet"
+                                   onclick="toggleSubNavigation(this);" >{% trans 'Internet' %}</a>
+                            </span>
+                            <ul id="sub-internet">
                                 <li>
                                     <form method="post" action="">
                                         {% csrf_token %}
@@ -107,8 +120,11 @@
                     </ul>
                     <ul id="options-wrapper">
                         <li>
-                            <span>{% trans "Options" %}</span>
-                            <ul id="options">
+                            <span>
+                                <a href="javascript:;" data-id="options"
+                                   onclick="toggleSubNavigation(this);" >{% trans "Options" %}</a>
+                            </span>
+                            <ul id="sub-options">
                                 <li id="language-options">
                                     <span>{% trans 'Language' %}</span>
                                     <span>

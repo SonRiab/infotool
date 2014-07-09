@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-08 02:00+0200\n"
+"POT-Creation-Date: 2014-07-09 08:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 "639-1</a>"
 
 #: models.py:45 models.py:47 models.py:51 models.py:111 models.py:185
-#: templates/portal/base.html:116
+#: templates/portal/base.html:132
 msgid "Language"
 msgstr "Sprache"
 
@@ -63,7 +63,8 @@ msgstr "Name"
 msgid "Email"
 msgstr "E-Mail"
 
-#: models.py:78 models.py:187 templates/portal/contact-form.html:23
+#: models.py:78 models.py:187 templates/portal/base.html:87
+#: templates/portal/contact-form.html:23
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -148,7 +149,6 @@ msgid "Category Placholder"
 msgstr "Kategorie Platzhalter"
 
 #: models.py:193
-#, fuzzy
 msgid "Placeholder text which will be displayed in the form."
 msgstr "Platzhalter-Text der als Hinweis im Formular angezeigt wird"
 
@@ -177,50 +177,50 @@ msgid "Damage Categories"
 msgstr "Schadenskategorien"
 
 #: templates/portal/base.html:47
-msgid "Navigation"
-msgstr "Navigation"
+msgid "Menu"
+msgstr "Menü"
 
-#: templates/portal/base.html:84
+#: templates/portal/base.html:93
 msgid "Feedback"
 msgstr "Feedback"
 
-#: templates/portal/base.html:90
+#: templates/portal/base.html:99
 msgid "Damage Report"
 msgstr "Schadensmeldung"
 
-#: templates/portal/base.html:97
+#: templates/portal/base.html:109
 msgid "Internet"
 msgstr "Internet"
 
-#: templates/portal/base.html:103
+#: templates/portal/base.html:116
 msgid "User"
 msgstr "Benutzer"
 
-#: templates/portal/base.html:104
+#: templates/portal/base.html:117
 msgid "Password"
 msgstr "Passwort"
 
-#: templates/portal/base.html:105
+#: templates/portal/base.html:118
 msgid "Login"
 msgstr "Anmelden"
 
-#: templates/portal/base.html:113
+#: templates/portal/base.html:128
 msgid "Options"
 msgstr "Optionen"
 
-#: templates/portal/base.html:130
+#: templates/portal/base.html:146
 msgid "Font Size"
 msgstr "Schriftgröße"
 
-#: templates/portal/base.html:133
+#: templates/portal/base.html:149
 msgid "decrease"
 msgstr "Verringern"
 
-#: templates/portal/base.html:137
+#: templates/portal/base.html:153
 msgid "increase"
 msgstr "Vergrößern"
 
-#: templates/portal/base.html:141
+#: templates/portal/base.html:157
 msgid "reset"
 msgstr "Zurücksetzen"
 

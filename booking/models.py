@@ -15,7 +15,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
-
 from django.db import models
 from portal.models import Language, Contact
 from django.utils.translation import ugettext_lazy as _
@@ -108,8 +107,7 @@ class SeminarUnit(models.Model):
         verbose_name_plural = _(u'Seminar Units')
 
     def __unicode__(self):
-        return u'%s (%s %s)' % (self.seminar.seminarextended_set.filter(seminar__id=self.seminar.id,
-                                                                        language__languageCode="de_DE").title,
+        return u'%s (%s %s)' % (self.seminar.internal_title,
                                 _('Room'),
                                 self.room.number)
 

@@ -66,7 +66,6 @@ li {
 
 #content,
 #sidebar {
-    /*max-height: 100px;*/
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -77,9 +76,9 @@ li {
 }
 
 #navigation-toggle,
-#navigation a {
-    font-size: 19px;
-    font-size: 1.2rem;
+#sidebar a {
+    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .cell {
@@ -114,7 +113,6 @@ li {
 #header .red-bg {
     width: 250px;
     width: 15.625rem;
-    /*max-width: 50%;*/
 }
 
 #header .blue-bg {
@@ -167,15 +165,9 @@ li {
 #navigation {
     width: 250px;
     width: 15.625rem;
-    /*max-width: 50%;*/
     display: block;
     vertical-align: top;
     background-color: #cccccc;
-}
-
-#options-wrapper,
-#internet-form {
-    margin: 10px 0 5px 0;
 }
 
 #internet-form > li > ul {
@@ -206,11 +198,16 @@ li {
     display: inline-block;
 }
 
-#sidebar #options li {
+#sidebar #sub-options,
+#sidebar #sub-internet {
+    display: inherit;
+}
+
+#sidebar #sub-options li {
     display: table-row;
 }
 
-#sidebar #options li > span {
+#sidebar #sub-options li > span {
     display: table-cell;
 }
 
@@ -219,7 +216,7 @@ li {
     box-shadow: 0px 5px 5px -5px #7E7E7E inset;
 }
 
-#navigation ul > li > ul {
+#sidebar ul > li > ul {
     display: none;
 }
 
@@ -237,16 +234,16 @@ li {
     margin-right: 0.3125rem;
 }
 
-#navigation a,
-#navigation a:hover,
-#navigation a:active,
-#navigation a:visited,
-#navigation a:focus {
+#sidebar a,
+#sidebar a:hover,
+#sidebar a:active,
+#sidebar a:visited,
+#sidebar a:focus {
     color: #333333;
 }
 
-#navigation a.selected,
-#navigation a:hover {
+#sidebar a.selected,
+#sidebar a:hover {
     font-weight: bold;
 }
 
@@ -352,23 +349,8 @@ textarea {
     }
 
     #sidebar {
-        width: 255px;
-        width: 15.9375rem;
         left: 0 !important;
         display: block !important;
         height: auto;
-        box-shadow: none;
-        background-color: transparent;
-    }
-
-    #sidebar > ul,
-    #navigation {
-        box-shadow: 2px 2px 3px 0 #7E7E7E;
-        box-shadow: 0.125rem 0.125rem 0.1875rem 0 #7E7E7E;
-    }
-
-    #options-wrapper,
-    #internet-form {
-        margin: 20px 0 5px 0;
     }
 }
