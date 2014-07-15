@@ -16,24 +16,27 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 from django import template
-from portal.models import SpecialSite
+from booking.models import VisitorGroup, SeminarUnit
+from datetime import datetime, timedelta
+from pytz import timezone
 
 register = template.Library()
 
-@register.inclusion_tag(u'portal/nav-item.html', takes_context=True)
-def nav_item(context, nav_item_id):
+@register.inclusion_tag(u'booking/infoscreen.html')
+def infoscreen(menu_site_id):
     """
         :Author:    Rene Jablonski
         :Contact:   rene@vnull.de
     """
-    item = SpecialSite.objects.filter(id=nav_item_id, is_visible=True).first()
-    sub_items = SpecialSite.objects.filter(superior_site=nav_item_id, is_visible=True).order_by(u'order')
-    is_selected = False
-    if int(context[u'current_site_id']) == nav_item_id:
-        is_selected = True
+    group = VisitorGroup.objects.filter(arrival__range=(
+        datetime.now(tz=timezone('Europe/Berlin')) - timedelta(minutes=15),
+        datetime.now(tz=timezone('Europe/Berlin')) + timedelta(hours=1))).first()
+    print group
+    first_unit = None
+    if group is not None:
+        first_unit = SeminarUnit.objects.filter(seminar=group.seminar).order_by('start').first()
+    print first_unit
     return {
-        u'nav_item': item,
-        u'sub_nav_items': sub_items,
-        u'is_selected': is_selected,
-        u'current_site_id': context[u'current_site_id'],
+        u'group': group,
+        u'first_unit': first_unit,
     }

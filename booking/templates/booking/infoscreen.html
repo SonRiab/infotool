@@ -17,23 +17,21 @@
 {% endcomment %}
 
 {% load i18n %}
-{% load sub_sites %}
 
-{% get_current_language as LANGUAGE_CODE %}
-
-{% if nav_item %}
-
-{% sub_sites nav_item.id %}
-
-    <a id="link-{{ nav_item.id }}" data-id="{{ nav_item.id }}"
-    {% if is_selected == True and sub_nav_items %}
-        class="selected" href="javascript:;" onclick="toggleSubNavigation(this);"
-    {% elif is_selected == True %}
-        class="selected" href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}"
-    {% elif sub_nav_items %}
-        href="javascript:;" onclick="toggleSubNavigation(this);"
-    {% else %}
-        href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}"
+{% block content %}
+    {% if group %}
+        <div class="group">
+            <span class="groupname">
+                <h3>
+                    {% trans 'Welcome' %} {{ group.groupname }}
+                </h3>
+            </span>
+            <ul>
+                <li>
+                    <span class="icon-home2" alt="{% trans 'Point of Origin' %}" title="{% trans 'Point of Origin' %}"></span>
+                    {{ first_unit.room.number }}
+                </li>
+            </ul>
+        </div>
     {% endif %}
-        >{{ nav_item.title }}</a>
-{% endif %}
+{% endblock %}
