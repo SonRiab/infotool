@@ -46,11 +46,11 @@
                     <span>
                         <p>
                             {% if meeting_place.floor == 0 %}
-                                {% blocktrans with room_nr=meeting_place.number floor=meeting_place.number %}
+                                {% blocktrans with room_nr=meeting_place.number floor=meeting_place.floor %}
                                     Welcome to Jugendbildungsstätte Kurt Löwenstein. Your first group meeting place is room {{ room_nr }}, ground floor.
                                 {% endblocktrans %}
                             {% else %}
-                                {% blocktrans with room_nr=meeting_place.number floor=meeting_place.number %}
+                                {% blocktrans with room_nr=meeting_place.number floor=meeting_place.floor %}
                                     Welcome to Jugendbildungsstätte Kurt Löwenstein. Your first group meeting place is room {{ room_nr }}, {{ floor }}. floor.
                                 {% endblocktrans %}
                             {% endif %}
