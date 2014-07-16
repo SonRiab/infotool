@@ -44,11 +44,11 @@
                 {% for room in group.room.all %}
                     {{ room.house.name }},
                     {% if room.floor == 0 %}
-                        {% blocktrans with room_nr=room.number floor=room.number %}
+                        {% blocktrans with room_nr=room.number floor=room.floor %}
                             Room {{ room_nr }}, Ground Floor
                         {% endblocktrans %}
                     {% else %}
-                        {% blocktrans with room_nr=room.number floor=room.number %}
+                        {% blocktrans with room_nr=room.number floor=room.floor %}
                             Room {{ room_nr }}, {{ floor }}. Floor
                         {% endblocktrans %}
                     {% endif %}

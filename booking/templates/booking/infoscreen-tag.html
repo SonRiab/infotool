@@ -96,11 +96,11 @@
                         <li>
                             <span class="icon-location" title="{% trans "Where?" %}"></span>
                             {% if seminar.room.floor == 0 %}
-                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.number %}
+                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.floor %}
                                     Room {{ room_nr }}, Ground Floor
                                 {% endblocktrans %}
                             {% else %}
-                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.number %}
+                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.floor %}
                                     Room {{ room_nr }}, {{ floor }}. Floor
                                 {% endblocktrans %}
                             {% endif %}
