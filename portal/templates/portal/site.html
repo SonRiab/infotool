@@ -24,11 +24,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 {% load render_as_template %}
 {% load staticfiles %}
 
-{% block css_style %}
+{% block base_css_style %}
     <link type="text/css" rel="stylesheet" href="{% static "css/portal/player.css" %}" charset="utf-8" media="all">
 {% endblock %}
 
-{% block js_script %}
+{% block base_js_script %}
     <script type="text/javascript" src="{% static "js/portal/jquery.jplayer.min.js" %}" charset="utf-8"></script>
     {% if  site.audio_file_1 and site.audio_file_2 %}
         <script type="text/javascript">

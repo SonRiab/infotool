@@ -15,7 +15,7 @@
 			},
 			"properties": {
 				"id": 1,
-				"order": 71,
+				"order": 1,
 				"prevSize": 32,
 				"code": 58881,
 				"name": "home2",
@@ -39,7 +39,7 @@
 			},
 			"properties": {
 				"id": 16,
-				"order": 74,
+				"order": 3,
 				"prevSize": 32,
 				"code": 58896,
 				"name": "music",
@@ -64,7 +64,7 @@
 			},
 			"properties": {
 				"id": 60,
-				"order": 84,
+				"order": 12,
 				"prevSize": 32,
 				"code": 58940,
 				"name": "phone",
@@ -88,7 +88,7 @@
 			},
 			"properties": {
 				"id": 66,
-				"order": 72,
+				"order": 2,
 				"prevSize": 32,
 				"code": 58946,
 				"name": "location",
@@ -96,6 +96,29 @@
 			},
 			"setIdx": 0,
 			"iconIdx": 66
+		},
+		{
+			"icon": {
+				"paths": [
+					"M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512 512-229.23 512-512-229.23-512-512-512zM658.744 749.256l-210.744-210.746v-282.51h128v229.49l173.256 173.254-90.512 90.512z"
+				],
+				"tags": [
+					"clock",
+					"time",
+					"schedule"
+				],
+				"grid": 16
+			},
+			"properties": {
+				"id": 73,
+				"order": 25,
+				"prevSize": 32,
+				"code": 58953,
+				"name": "clock2",
+				"ligatures": ""
+			},
+			"setIdx": 0,
+			"iconIdx": 73
 		},
 		{
 			"icon": {
@@ -114,7 +137,7 @@
 			},
 			"properties": {
 				"id": 112,
-				"order": 75,
+				"order": 4,
 				"prevSize": 32,
 				"code": 58992,
 				"name": "user",
@@ -138,7 +161,7 @@
 			},
 			"properties": {
 				"id": 127,
-				"order": 102,
+				"order": 23,
 				"prevSize": 32,
 				"code": 59007,
 				"name": "search",
@@ -161,7 +184,7 @@
 			},
 			"properties": {
 				"id": 128,
-				"order": 100,
+				"order": 21,
 				"prevSize": 32,
 				"code": 59008,
 				"name": "zoomin",
@@ -185,7 +208,7 @@
 			},
 			"properties": {
 				"id": 129,
-				"order": 101,
+				"order": 22,
 				"prevSize": 32,
 				"code": 59009,
 				"name": "zoomout",
@@ -210,7 +233,7 @@
 			},
 			"properties": {
 				"id": 184,
-				"order": 77,
+				"order": 5,
 				"prevSize": 32,
 				"code": 59064,
 				"name": "menu2",
@@ -232,7 +255,7 @@
 			},
 			"properties": {
 				"id": 248,
-				"order": 87,
+				"order": 13,
 				"prevSize": 32,
 				"code": 59128,
 				"name": "info2",
@@ -256,7 +279,7 @@
 			},
 			"properties": {
 				"id": 250,
-				"order": 93,
+				"order": 17,
 				"prevSize": 32,
 				"code": 59130,
 				"name": "cancel-circle",
@@ -279,7 +302,7 @@
 			},
 			"properties": {
 				"id": 251,
-				"order": 94,
+				"order": 18,
 				"prevSize": 32,
 				"code": 59131,
 				"name": "checkmark-circle",
@@ -303,7 +326,7 @@
 			},
 			"properties": {
 				"id": 252,
-				"order": 90,
+				"order": 14,
 				"prevSize": 32,
 				"code": 59132,
 				"name": "spam",
@@ -328,7 +351,7 @@
 			},
 			"properties": {
 				"id": 253,
-				"order": 91,
+				"order": 15,
 				"prevSize": 32,
 				"code": 59133,
 				"name": "close",
@@ -353,7 +376,7 @@
 			},
 			"properties": {
 				"id": 254,
-				"order": 92,
+				"order": 16,
 				"prevSize": 32,
 				"code": 59134,
 				"name": "checkmark",
@@ -376,7 +399,7 @@
 			},
 			"properties": {
 				"id": 266,
-				"order": 78,
+				"order": 6,
 				"prevSize": 32,
 				"code": 59146,
 				"name": "play3",
@@ -399,7 +422,7 @@
 			},
 			"properties": {
 				"id": 267,
-				"order": 79,
+				"order": 7,
 				"prevSize": 32,
 				"code": 59147,
 				"name": "pause2",
@@ -423,7 +446,7 @@
 			},
 			"properties": {
 				"id": 268,
-				"order": 80,
+				"order": 8,
 				"prevSize": 32,
 				"code": 59148,
 				"name": "stop2",
@@ -448,7 +471,7 @@
 			},
 			"properties": {
 				"id": 276,
-				"order": 81,
+				"order": 9,
 				"prevSize": 32,
 				"code": 59156,
 				"name": "volume-high",
@@ -472,7 +495,7 @@
 			},
 			"properties": {
 				"id": 278,
-				"order": 82,
+				"order": 10,
 				"prevSize": 32,
 				"code": 59158,
 				"name": "volume-low",
@@ -497,7 +520,7 @@
 			},
 			"properties": {
 				"id": 280,
-				"order": 83,
+				"order": 11,
 				"prevSize": 32,
 				"code": 59160,
 				"name": "volume-mute2",
@@ -519,7 +542,7 @@
 			},
 			"properties": {
 				"id": 350,
-				"order": 96,
+				"order": 19,
 				"prevSize": 32,
 				"code": 59230,
 				"name": "share",
@@ -547,7 +570,7 @@
 			},
 			"properties": {
 				"id": 353,
-				"order": 98,
+				"order": 20,
 				"prevSize": 32,
 				"code": 59233,
 				"name": "mail3",
@@ -570,7 +593,7 @@
 			},
 			"properties": {
 				"id": 208,
-				"order": 105,
+				"order": 24,
 				"prevSize": 20,
 				"code": 59539,
 				"name": "arrow-right8",

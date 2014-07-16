@@ -1,0 +1,126 @@
+{% comment "License" %}
+    Copyright (C) 2014  Rene Jablonski
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; version 2
+    of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+{% endcomment %}
+
+{% load i18n %}
+{% load staticfiles %}
+{% load seminar_title %}
+
+{% block base_css_style %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/booking/infoscreen-tag.css" %}" charset="utf-8" media="all">
+{% endblock %}
+
+{% block base_js_script %}
+    <script type="text/javascript" src="{% static "js/booking/infoscreen-tag.js" %}" charset="utf-8"></script>
+{% endblock %}
+
+{% if seminars_now %}
+    <div class="seminars">
+        <span>
+            <h3>{% trans "Seminars now" %}</h3>
+        </span>
+        <ul>
+            {% for seminar in seminars_now %}
+                <li class="box gray-bg">
+                    <span class="box-title">
+                        <h4>{% seminar_title seminar.seminar.id %}</h4>
+                    </span>
+                    <ul class="meta">
+                        <li>
+                            <span class="icon-clock2" title="{% trans "When?" %}"></span>
+                            {% blocktrans with start=seminar.start|date:"H.i" end=seminar.end|date:"H.i" %}
+                                {{ start }} - {{ end }} o'clock
+                            {% endblocktrans %}
+                        </li>
+                        <li>
+                            <span class="icon-location" title="{% trans "Where?" %}"></span>
+                            {% if seminar.room.floor == 0 %}
+                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.number %}
+                                    Room {{ room_nr }}, Ground Floor
+                                {% endblocktrans %}
+                            {% else %}
+                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.number %}
+                                    Room {{ room_nr }}, {{ floor }}. Floor
+                                {% endblocktrans %}
+                            {% endif %}
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if menu %}
+    <div class="menu">
+        <span>
+            <h3>{% trans "Menu" %}</h3>
+        </span>
+        <span>
+            {{ menu.content }}
+        </span>
+    </div>
+{% endif %}
+{% if next_seminars %}
+    <div class="seminars">
+        <span>
+            <h3>{% trans "Next Seminars" %}</h3>
+        </span>
+        <ul>
+            {% for seminar in next_seminars %}
+                <li class="box gray-bg">
+                    <span class="box-title">
+                        <h4>{{ seminar.seminar.internal_title }}</h4>
+                    </span>
+                    <ul class="meta">
+                        <li>
+                            <span class="icon-clock2" title="{% trans "When?" %}"></span>
+                            {% blocktrans with start=seminar.start|date:"H.i" end=seminar.end|date:"H.i" %}
+                                {{ start }} - {{ end }} o'clock
+                            {% endblocktrans %}
+
+                        </li>
+                        <li>
+                            <span class="icon-location" title="{% trans "Where?" %}"></span>
+                            {% if seminar.room.floor == 0 %}
+                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.number %}
+                                    Room {{ room_nr }}, Ground Floor
+                                {% endblocktrans %}
+                            {% else %}
+                                {% blocktrans with room_nr=seminar.room.number floor=seminar.room.number %}
+                                    Room {{ room_nr }}, {{ floor }}. Floor
+                                {% endblocktrans %}
+                            {% endif %}
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if activities %}
+    <div class="activities">
+        <span>
+            <h3>{% trans "Recreational activities and miscellaneous" %}</h3>
+        </span>
+        {% for activity in activities %}
+            <span class="activity" id="activity-{{ activity.id }}"
+                {% if forloop.first %}style="display: inline;"{% endif %}>
+                    {{ activity.content }}
+            </span>
+        {% endfor %}
+    </div>
+{% endif %}

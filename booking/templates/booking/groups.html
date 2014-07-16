@@ -17,31 +17,43 @@
 {% endcomment %}
 
 {% load i18n %}
+{% load staticfiles %}
 
-{% block content %}
-    {% for group in all_groups %}
-        <div class="group">
-            <span class="groupname">
-                <h3>
-                    {{ group.groupname }}
-                </h3>
-            </span>
-            <ul>
-                <li>
-                    <span class="icon-home2" alt="{% trans 'Point of Origin' %}" title="{% trans 'Point of Origin' %}"></span>
-                    {{ group.point_of_origin }}
-                </li>
-                <li>
-                    <span class="icon-user" alt="{% trans 'Contact' %}" title="{% trans 'Contact' %}"></span>
-                    {{ group.contact.contact_name }}
-                </li>
-                <li>
-                    <span class="icon-location" alt="{% trans 'Rooms' %}" title="{% trans 'Rooms' %}"></span>
-                    {% for room in group.room.all %}
-                        {{ room.house.name }}, {{ room.floor }} {% trans 'Floor' %}, {% trans 'Room' %} {{ room.number }}
-                    {% endfor %}
-                </li>
-            </ul>
-        </div>
-    {% endfor %}
+{% block base_css_style %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/booking/groups.css" %}" charset="utf-8" media="all">
 {% endblock %}
+
+{% for group in all_groups %}
+    <div class="group box gray-bg">
+        <span class="box-title">
+            <h3>
+                {{ group.groupname }}
+            </h3>
+        </span>
+        <ul class="meta">
+            <li>
+                <span class="icon-home2" alt="{% trans 'Point of Origin' %}" title="{% trans 'Point of Origin' %}"></span>
+                {{ group.point_of_origin }}
+            </li>
+            <li>
+                <span class="icon-user" alt="{% trans 'Contact' %}" title="{% trans 'Contact' %}"></span>
+                {{ group.contact.contact_name }}
+            </li>
+            <li>
+                <span class="icon-location" alt="{% trans 'Rooms' %}" title="{% trans 'Rooms' %}"></span>
+                {% for room in group.room.all %}
+                    {{ room.house.name }},
+                    {% if room.floor == 0 %}
+                        {% blocktrans with room_nr=room.number floor=room.number %}
+                            Room {{ room_nr }}, Ground Floor
+                        {% endblocktrans %}
+                    {% else %}
+                        {% blocktrans with room_nr=room.number floor=room.number %}
+                            Room {{ room_nr }}, {{ floor }}. Floor
+                        {% endblocktrans %}
+                    {% endif %}
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+{% endfor %}

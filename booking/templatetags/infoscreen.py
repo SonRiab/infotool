@@ -16,27 +16,46 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 from django import template
+from django.utils.timezone import now
 from booking.models import VisitorGroup, SeminarUnit
 from datetime import datetime, timedelta
-from pytz import timezone
+from portal.models import Site
 
 register = template.Library()
 
-@register.inclusion_tag(u'booking/infoscreen.html')
-def infoscreen(menu_site_id):
+
+@register.inclusion_tag(u'booking/infoscreen-tag.html')
+def infoscreen(menu_site_id, *args):
     """
         :Author:    Rene Jablonski
         :Contact:   rene@vnull.de
     """
-    group = VisitorGroup.objects.filter(arrival__range=(
-        datetime.now(tz=timezone('Europe/Berlin')) - timedelta(minutes=15),
-        datetime.now(tz=timezone('Europe/Berlin')) + timedelta(hours=1))).first()
-    print group
-    first_unit = None
-    if group is not None:
-        first_unit = SeminarUnit.objects.filter(seminar=group.seminar).order_by('start').first()
-    print first_unit
+    seminars_now = SeminarUnit.objects.filter(start__lt=now(), end__gt=now())
+
+    next_seminars = SeminarUnit.objects.filter(start__range=(now(), now() + timedelta(hours=1)))
+
+    menu = None
+    if 11 <= datetime.now().hour <= 13:
+        menu = Site.objects.get(id=menu_site_id)
+
+    activity_site_ids = []
+    for arg in args:
+        if type(arg) is int:
+            activity_site_ids.insert(len(activity_site_ids), arg)
+
+    print next_seminars
+    activities = None
+    if len(activity_site_ids) != 0 and menu is None:
+        #if len(seminars_now) == 0 and len(next_seminars) == 0:
+            activities = Site.objects.filter(id__in=activity_site_ids)
+        #elif (len(seminars_now) <= 1 and len(next_seminars) <= 1) \
+        #        or (len(seminars_now) == 0 and len(next_seminars) <= 2) \
+        #        or (len(next_seminars) == 0 and len(seminars_now) <= 2):
+        #    activities = Site.objects.filter(id=activity_site_ids[0])
+
     return {
-        u'group': group,
-        u'first_unit': first_unit,
+        u'seminars_now': seminars_now,
+        u'next_seminars': next_seminars,
+        u'menu': menu,
+        u'activities': activities,
     }

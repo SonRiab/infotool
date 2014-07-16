@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends "portal/generic.html" %}
+
 {% comment "License" %}
     Copyright (C) 2014  Rene Jablonski
 
@@ -18,152 +19,145 @@
 {% endcomment %}
 
 {% load i18n %}
-{% load staticfiles %}
 {% load nav_item %}
 {% load sub_sites %}
+{% load staticfiles %}
 
 {% get_current_language as LANGUAGE_CODE %}
 
-<html lang="{{ LANGUAGE_CODE }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta content="width=device-width" name="viewport">
-        <title>{% block title %}{% endblock %}</title>
-        <link type="text/css" rel="stylesheet" href="{% static "css/portal/base.css" %}" charset="utf-8" media="all">
-        <link type="text/css" rel="stylesheet" href="{% static "css/portal/icons.css" %}" charset="utf-8" media="all">
-        {% block css_style %}{% endblock %}
-        <script type="text/javascript" src="{% static "js/portal/jquery-1.11.1.min.js" %}" charset="utf-8"></script>
-        <script type="text/javascript" src="{% static "js/portal/jquery.cookie.js" %}" charset="utf-8"></script>
-        {% block js_script %}{% endblock %}
-        <script type="text/javascript" src="{% static "js/portal/base.js" %}" charset="utf-8"></script>
-    </head>
-    <body>
-        <div id="container">
-            <div id="header">
-                {% comment %}<div id="logo" class="white-bg">Jugendbildungsstätte Kurt Löwenstein</div>{% endcomment %}
-                <div class="red-bg cell">
-                    <a id="navigation-toggle" href="javascript:;" onclick="toggleNavigation();" alt="navigation toggle">
-                        <p><span class="icon-menu2"></span>{% trans 'Menu' %}</p>
-                    </a>
-                    <span>&nbsp;</span>
-                </div>
-            </div>
-            <div id="main">
-                <div id="sidebar">
-                    <nav id="navigation">
-                        <ul>
-                            {% for item in nav_items %}
-                                <li id="nav-item-{{ item.id }}">
-                                    <span>{% nav_item item.id %}</span>
-                                    {% sub_sites item.id %}
-                                    {% if sub_nav_items %}
-                                        {% if is_sub_item_selected == True %}
-                                            {% comment %}<span id="toggle-icon-{{ item.id }}" class="icon-minus3"></span>{% endcomment %}
-                                            <ul id="sub-{{ item.id }}" style="display: inherit;">
-                                        {% else %}
-                                            {% comment %}<span id="toggle-icon-{{ item.id }}" class="icon-plus3"></span>{% endcomment %}
-                                            <ul id="sub-{{ item.id }}">
-                                        {% endif %}
-                                            {% for sub_item in sub_nav_items %}
-                                                <li id="nav-item-{{ sub_item.id }}">
-                                                    <span>
-                                                        {% nav_item sub_item.id %}
-                                                    </span>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+{% block generic_css_style %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/portal/base.css" %}" charset="utf-8" media="all">
+    {% block base_css_style %}{% endblock %}
+{% endblock %}
+
+{% block generic_js_script %}
+    <script type="text/javascript" src="{% static "js/portal/base.js" %}" charset="utf-8"></script>
+    {% block base_js_script %}{% endblock %}
+{% endblock %}
+
+{% block header_red %}
+    <a id="navigation-toggle" href="javascript:;" onclick="toggleNavigation();" alt="navigation toggle">
+        <p><span class="icon-menu2"></span>{% trans 'Menu' %}</p>
+    </a>
+{% endblock %}
+
+{% block container %}
+    <div id="main">
+        <div id="sidebar">
+            {% block sidebar %}
+                <nav id="navigation">
+                    <ul>
+                        {% for item in nav_items %}
+                            <li id="nav-item-{{ item.id }}">
+                                <span>{% nav_item item.id %}</span>
+                                {% sub_sites item.id %}
+                                {% if sub_nav_items %}
+                                    {% if is_sub_item_selected == True %}
+                                        {% comment %}<span id="toggle-icon-{{ item.id }}" class="icon-minus3"></span>{% endcomment %}
+                                        <ul id="sub-{{ item.id }}" style="display: inherit;">
+                                    {% else %}
+                                        {% comment %}<span id="toggle-icon-{{ item.id }}" class="icon-plus3"></span>{% endcomment %}
+                                        <ul id="sub-{{ item.id }}">
                                     {% endif %}
-                                </li>
-                            {% endfor %}
+                                {% for sub_item in sub_nav_items %}
+                                    <li id="nav-item-{{ sub_item.id }}">
+                                        <span>
+                                            {% nav_item sub_item.id %}
+                                        </span>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <ul id="options-wrapper">
+                    <li>
+                        <span>
+                            <a href="javascript:;" data-id="contact"
+                               onclick="toggleSubNavigation(this);">{% trans "Contact" %}</a>
+                        </span>
+                        <ul id="sub-contact">
+                            <li>
+                            <span>
+                                <a id="link-feedback" {% if is_feedback_selected == True %}class="selected"{% endif %}
+                                   href="/{{ LANGUAGE_CODE }}/feedback/">{% trans 'Feedback' %}</a>
+                            </span>
+                            </li>
+                            <li>
+                            <span>
+                                <a id="link-damage-report" {% if is_damage_report_selected == True %}class="selected"{% endif %}
+                                   href="/{{ LANGUAGE_CODE }}/damage-report/">{% trans 'Damage Report' %}</a>
+                            </span>
+                            </li>
                         </ul>
-                    </nav>
-                    <ul id="options-wrapper">
-                        <li>
-                            <span>
-                                <a href="javascript:;" data-id="contact"
-                                   onclick="toggleSubNavigation(this);" >{% trans "Contact" %}</a>
-                            </span>
-                            <ul id="sub-contact">
-                                <li>
-                                    <span>
-                                        <a id="link-feedback" {% if is_feedback_selected == True %}class="selected"{% endif %}
-                                           href="/{{ LANGUAGE_CODE }}/feedback/">{% trans 'Feedback' %}</a>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        <a id="link-damage-report" {% if is_damage_report_selected == True %}class="selected"{% endif %}
-                                           href="/{{ LANGUAGE_CODE }}/damage-report/">{% trans 'Damage Report' %}</a>
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul id="internet-form">
-                        <li>
-                            <span>
-                                <a href="javascript:;" data-id="internet"
-                                   onclick="toggleSubNavigation(this);" >{% trans 'Internet' %}</a>
-                            </span>
-                            <ul id="sub-internet">
-                                <li>
-                                    <form method="post" action="">
-                                        {% csrf_token %}
-                                        <input name="redirurl" type="hidden" value="{{ redirect_url }}">
-                                        <input name="auth_user" type="text" size="15" placeholder="{% trans 'User' %}">
-                                        <input name="auth_pass" type="password" size="15" placeholder="{% trans 'Password' %}">
-                                        <input name="accept" type="submit" value="{% trans 'Login' %}">
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul id="options-wrapper">
-                        <li>
-                            <span>
-                                <a href="javascript:;" data-id="options"
-                                   onclick="toggleSubNavigation(this);" >{% trans "Options" %}</a>
-                            </span>
-                            <ul id="sub-options">
-                                <li id="language-options">
-                                    <span>{% trans 'Language' %}</span>
-                                    <span>
-                                        <select onchange="setLang(this)">
-                                            {% for language in supported_languages %}
-                                                <option value="{{ language.language_code }}"
-                                                        {% if language.language_code == LANGUAGE_CODE %}
-                                                        selected="selected"
-                                                        {% endif %}
-                                                        >{{ language.native }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </span>
-                                </li>
-                                <li id="view-options">
-                                    <span>{% trans 'Font Size' %}</span>
-                                    <span>
-                                        <a href="javascript:;" onclick="changeFontSize(-1);"
-                                           alt="{% trans 'decrease' %}" title="{% trans 'decrease' %}">
-                                            <span class="icon-zoomout"></span>
-                                        </a>
-                                        <a href="javascript:;" onclick="changeFontSize(1);"
-                                           alt="{% trans 'increase' %}" title="{% trans 'increase' %}">
-                                            <span class="icon-zoomin"></span>
-                                        </a>
-                                        <a href="javascript:;" onclick="setBaseFontSize(16);"
-                                           alt="{% trans 'reset' %}" title="{% trans 'reset' %}">
-                                            <span class="icon-search"></span>
-                                        </a>
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div id="content">
-                    {% block content %}{% endblock %}
-                </div>
-            </div>
+                    </li>
+                </ul>
+                <ul id="internet-form">
+                    <li>
+                    <span>
+                        <a href="javascript:;" data-id="internet"
+                           onclick="toggleSubNavigation(this);">{% trans 'Internet' %}</a>
+                    </span>
+                        <ul id="sub-internet">
+                            <li>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input name="redirurl" type="hidden" value="{{ redirect_url }}">
+                                    <input name="auth_user" type="text" size="15" placeholder="{% trans 'User' %}">
+                                    <input name="auth_pass" type="password" size="15" placeholder="{% trans 'Password' %}">
+                                    <input name="accept" type="submit" value="{% trans 'Login' %}">
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul id="options-wrapper">
+                    <li>
+                        <span>
+                            <a href="javascript:;" data-id="options"
+                               onclick="toggleSubNavigation(this);">{% trans "Options" %}</a>
+                        </span>
+                        <ul id="sub-options">
+                            <li id="language-options">
+                                <span>{% trans 'Language' %}</span>
+                                <span>
+                                    <select onchange="setLang(this)">
+                                        {% for language in supported_languages %}
+                                            <option value="{{ language.language_code }}"
+                                                    {% if language.language_code == LANGUAGE_CODE %}
+                                                    selected="selected"
+                                                    {% endif %}
+                                                    >{{ language.native }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </span>
+                            </li>
+                            <li id="view-options">
+                                <span>{% trans 'Font Size' %}</span>
+                                <span>
+                                    <a href="javascript:;" onclick="changeFontSize(-1);"
+                                       alt="{% trans 'decrease' %}" title="{% trans 'decrease' %}">
+                                        <span class="icon-zoomout"></span>
+                                    </a>
+                                    <a href="javascript:;" onclick="changeFontSize(1);"
+                                       alt="{% trans 'increase' %}" title="{% trans 'increase' %}">
+                                        <span class="icon-zoomin"></span>
+                                    </a>
+                                    <a href="javascript:;" onclick="setBaseFontSize(16);"
+                                       alt="{% trans 'reset' %}" title="{% trans 'reset' %}">
+                                        <span class="icon-search"></span>
+                                    </a>
+                                </span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endblock %}
         </div>
-    </body>
-</html>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,3 +1,5 @@
+{% extends "portal/generic.html" %}
+
 {% comment "License" %}
     Copyright (C) 2014  Rene Jablonski
 
@@ -17,21 +19,52 @@
 {% endcomment %}
 
 {% load i18n %}
+{% load staticfiles %}
+{% load render_as_template %}
+{% load meeting_place %}
 
-{% block content %}
-    {% if group %}
-        <div class="group">
-            <span class="groupname">
-                <h3>
-                    {% trans 'Welcome' %} {{ group.groupname }}
-                </h3>
-            </span>
-            <ul>
-                <li>
-                    <span class="icon-home2" alt="{% trans 'Point of Origin' %}" title="{% trans 'Point of Origin' %}"></span>
-                    {{ first_unit.room.number }}
-                </li>
-            </ul>
+{% block generic_css_style %}
+    <meta http-equiv="refresh" content="30">
+    <link type="text/css" rel="stylesheet" href="{% static "css/portal/base.css" %}" charset="utf-8" media="all">
+    <link type="text/css" rel="stylesheet" href="{% static "css/booking/infoscreen.css" %}" charset="utf-8" media="all">
+    <link type="text/css" rel="stylesheet" href="{% static "css/booking/infoscreen-tag.css" %}" charset="utf-8" media="all">
+{% endblock %}
+
+{% block base_js_script %}
+
+{% endblock %}
+
+{% block container %}
+    <div id="content">
+        {% if groups %}
+            {% for group in groups %}
+                {% meeting_place group.id %}
+                <div class="box group {% if forloop.last %}lastgroup{% endif %}">
+                    <span class="box-title">
+                        <h2>{{ group.groupname }}</h2>
+                    </span>
+                    <span>
+                        <p>
+                            {% if meeting_place.floor == 0 %}
+                                {% blocktrans with room_nr=meeting_place.number floor=meeting_place.number %}
+                                    Welcome to Jugendbildungsstätte Kurt Löwenstein. Your first group meeting place is room {{ room_nr }}, ground floor.
+                                {% endblocktrans %}
+                            {% else %}
+                                {% blocktrans with room_nr=meeting_place.number floor=meeting_place.number %}
+                                    Welcome to Jugendbildungsstätte Kurt Löwenstein. Your first group meeting place is room {{ room_nr }}, {{ floor }}. floor.
+                                {% endblocktrans %}
+                            {% endif %}
+                        </p>
+                    </span>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% autoescape off %}
+                {% render_as_template site.content %}
+            {% endautoescape %}
+        {% endif %}
+        <div>
+            <p>{% trans "For further informations connect to our W-LAN and open any website in your browser." %}</p>
         </div>
-    {% endif %}
+    </div>
 {% endblock %}

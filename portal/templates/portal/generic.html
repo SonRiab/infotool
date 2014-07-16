@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% comment "License" %}
+    Copyright (C) 2014  Rene Jablonski
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; version 2
+    of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+{% endcomment %}
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width" name="viewport">
+        <title>{% block title %}{% endblock %}</title>
+        <link type="text/css" rel="stylesheet" href="{% static "css/portal/generic.css" %}" charset="utf-8" media="all">
+        <link type="text/css" rel="stylesheet" href="{% static "css/portal/icons.css" %}" charset="utf-8" media="all">
+        {% block generic_css_style %}{% endblock %}
+        <script type="text/javascript" src="{% static "js/portal/jquery-1.11.1.min.js" %}" charset="utf-8"></script>
+        <script type="text/javascript" src="{% static "js/portal/jquery.cookie.js" %}" charset="utf-8"></script>
+        {% block generic_js_script %}{% endblock %}
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                {% comment %}<div id="logo" class="white-bg">Jugendbildungsstätte Kurt Löwenstein</div>{% endcomment %}
+                <div class="red-bg cell">
+                    {% block header_red %}{% endblock %}
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+            {% block container %}{% endblock %}
+        </div>
+    </body>
+</html>

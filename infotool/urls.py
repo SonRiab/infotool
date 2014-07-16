@@ -20,16 +20,16 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from portal import views as portal_views
-#from django.conf import settings
-from django.conf.urls.static import static
+from booking import views as booking_views
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', portal_views.IndexView.as_view(), name='index'),
+    url(r'^infoscreen/$', booking_views.InfoscreenView.as_view(), name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
-)  # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
 
 site_pattern = patterns('',
     url(r'(?P<pk>\d+)/', portal_views.SiteView.as_view(), ),
