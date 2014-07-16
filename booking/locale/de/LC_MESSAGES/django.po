@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 09:47+0200\n"
+"POT-Creation-Date: 2014-07-16 10:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -240,6 +240,10 @@ msgstr ""
 "Treffpunkt ist Raum %(room_nr)s in der %(floor)s. Etage."
 
 #: templates/booking/infoscreen.html:67
+msgid "Note"
+msgstr "Hinweis"
+
+#: templates/booking/infoscreen.html:68
 msgid ""
 "For further informations connect to our W-LAN and open any website in your "
 "browser."
