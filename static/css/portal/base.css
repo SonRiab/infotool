@@ -95,6 +95,14 @@
     display: inherit;
 }
 
+#sidebar #powered-by span a {
+    font-size: 10px;
+}
+
+#sidebar #powered-by li {
+    text-align: right;
+}
+
 #sidebar #sub-options li {
     display: table-row;
 }
@@ -137,6 +145,11 @@
 #sidebar a.selected,
 #sidebar a:hover {
     font-weight: bold;
+}
+
+#sidebar #beuth-logo {
+    width: 32px;
+    height: 24px;
 }
 
 #content {

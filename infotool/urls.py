@@ -27,6 +27,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', portal_views.IndexView.as_view(), name='index'),
+    url(r'^powered-by/$', portal_views.PoweredByView.as_view()),
     url(r'^infoscreen/$', booking_views.InfoscreenView.as_view(), name='index'),
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),

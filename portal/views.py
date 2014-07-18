@@ -125,3 +125,13 @@ class FormSuccessView(generic.TemplateView):
         context.update(generic_context_data(context, self.request))
         context[u'current_site_id'] = -1
         return context
+
+
+class PoweredByView(generic.TemplateView):
+    template_name = 'portal/powered-by.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PoweredByView, self).get_context_data(**kwargs)
+        context.update(generic_context_data(context, self.request))
+        context[u'current_site_id'] = -1
+        return context
