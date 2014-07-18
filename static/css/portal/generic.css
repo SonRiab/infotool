@@ -46,6 +46,10 @@ a:before {
     vertical-align: bottom;
 }
 
+a[rel="lightbox"]:before {
+    content:"";
+}
+
 li {
     margin-left: 20px;
     margin-left: 1.25rem;
