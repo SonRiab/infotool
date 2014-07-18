@@ -21,6 +21,7 @@ $(function() {
     if(baseFontSize != undefined) {
         setBaseFontSize(parseInt(baseFontSize));
     }
+    $('a[rel=lightbox]').magnificPopup({type:'image'});
 });
 
 var toggleNavigation = function() {
