@@ -97,6 +97,7 @@
 
 #sidebar #powered-by span a {
     font-size: 10px;
+    font-size: 0.625rem;
 }
 
 #sidebar #powered-by li {
@@ -145,11 +146,6 @@
 #sidebar a.selected,
 #sidebar a:hover {
     font-weight: bold;
-}
-
-#sidebar #beuth-logo {
-    width: 32px;
-    height: 24px;
 }
 
 #content {
