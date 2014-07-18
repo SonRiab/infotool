@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 {% load i18n %}
 {% load render_as_template %}
 {% load staticfiles %}
+{% load lightbox %}
 
 {% block base_css_style %}
     <link type="text/css" rel="stylesheet" href="{% static "css/portal/player.css" %}" charset="utf-8" media="all">
@@ -53,7 +54,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         {% if site.is_special %}
             {% render_as_template site.content %}
         {% else %}
-            {{ site.content }}
+            {{ site.content|lightbox }}
         {% endif %}
     {% endautoescape %}
     {% if site.audio_file_1 and site.audio_file_2 %}
