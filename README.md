@@ -10,6 +10,8 @@ Requirements
  - Django (1.6.5) - `pip install django` 
  - Django-TinyMCE (1.5.2) - `pip install django-tinymce`
  - pytz - `pip install pytz`
+ - django-filebrowser `pip install django-filebrowser`
+ - pillow `pip install pillow`
 
 License
 -------
