@@ -21,12 +21,15 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from portal import views as portal_views
 from booking import views as booking_views
+from filebrowser.sites import site
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', portal_views.IndexView.as_view(), name='index'),
     url(r'^infoscreen/$', booking_views.InfoscreenView.as_view(), name='index'),
+    url(r'^admin/filebrowser/', include(site.urls)),
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
 )
