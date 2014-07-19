@@ -25,7 +25,7 @@ from django.utils.translation import ugettext_lazy as _
 class GenericContactForm(forms.Form):
     subject = forms.CharField(label=_('Subject'),
                               max_length=100)
-    name = forms.CharField(label=_('Name'),
+    name = forms.CharField(label=_('Name/Group'),
                            max_length=100,
                            required=False,
                            help_text=_('Optional'))
@@ -42,8 +42,9 @@ class GenericContactForm(forms.Form):
         name = self.cleaned_data['name']
         mail = self.cleaned_data['mail']
         message = self.cleaned_data['message']
-        body = _('Name: %(name)\nEmail: %(mail)\nMessage:\n%(message)') % {'name': name, 'mail': mail, 'message': message}
-        #body = message
+        body = _('Name/Group: %(name)\nEmail: %(mail)\nMessage:\n%(message)') % {'name': name, 'mail': mail,
+                                                                                 'message': message}
+        # body = message
         contact = '%s %s <%s>' % (category.contact.prename, category.contact.name, category.contact.email)
         send_mail(subject, body, 'rene@p-pchen.de', (contact,), fail_silently=False)
         print 'send mail\nto: %s\nsubject: %s\nmessage:\n%s' % (contact, subject, body)

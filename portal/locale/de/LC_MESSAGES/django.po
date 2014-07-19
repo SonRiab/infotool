@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-19 03:03+0200\n"
+"POT-Creation-Date: 2014-07-19 03:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:26 forms.py:58 forms.py:69
+#: forms.py:26 forms.py:59 forms.py:70
 msgid "Subject"
 msgstr "Betreff"
 
-#: forms.py:28 models.py:65
-msgid "Name"
-msgstr "Name"
+#: forms.py:28
+msgid "Name/Group"
+msgstr "Name/Gruppe"
 
 #: forms.py:31 forms.py:34
 msgid "Optional"
@@ -44,12 +44,12 @@ msgstr "Benötigt"
 
 #: forms.py:45
 msgid ""
-"Name: %(name)\n"
+"Name/Group: %(name)\n"
 "Email: %(mail)\n"
 "Message:\n"
 "%(message)"
 msgstr ""
-"Name: %(name)\n"
+"Name/Gruppe: %(name)\n"
 "E-Mail: %(mail)\n"
 "Nachricht:\n"
 "%(message)"
@@ -78,6 +78,10 @@ msgstr "Sprachen"
 #: models.py:63
 msgid "Prename"
 msgstr "Vorname"
+
+#: models.py:65
+msgid "Name"
+msgstr "Name"
 
 #: models.py:67
 msgid "Email"
