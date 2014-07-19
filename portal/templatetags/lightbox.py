@@ -24,6 +24,7 @@ register = template.Library()
 r_lightbox = re.compile('<a (?=[^>]*\.(jpg|gif|png))(?![^>]*lightbox)')
 s_lightbox = '<a rel="lightbox" '
 
+
 @register.filter
 def lightbox(content):
     return r_lightbox.sub(s_lightbox, smart_unicode(content))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 09:00+0200\n"
+"POT-Creation-Date: 2014-07-19 03:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: forms.py:26 forms.py:56 forms.py:67
+#: forms.py:26 forms.py:58 forms.py:69
 msgid "Subject"
 msgstr "Betreff"
 
-#: forms.py:33
+#: forms.py:28 models.py:65
+msgid "Name"
+msgstr "Name"
+
+#: forms.py:31 forms.py:34
+msgid "Optional"
+msgstr "Optional"
+
+#: forms.py:32
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: forms.py:35
 msgid "Message"
 msgstr "Nachricht"
 
-#: forms.py:35
+#: forms.py:37
 msgid "Required"
 msgstr "Benötigt"
+
+#: forms.py:45
+msgid ""
+"Name: %(name)\n"
+"Email: %(mail)\n"
+"Message:\n"
+"%(message)"
+msgstr ""
+"Name: %(name)\n"
+"E-Mail: %(mail)\n"
+"Nachricht:\n"
+"%(message)"
 
 #: models.py:40
 msgid "Language Code"
@@ -43,7 +67,7 @@ msgstr ""
 "639-1</a>"
 
 #: models.py:45 models.py:47 models.py:51 models.py:111 models.py:185
-#: templates/portal/base.html:126
+#: templates/portal/base.html:104
 msgid "Language"
 msgstr "Sprache"
 
@@ -55,16 +79,11 @@ msgstr "Sprachen"
 msgid "Prename"
 msgstr "Vorname"
 
-#: models.py:65
-msgid "Name"
-msgstr "Name"
-
 #: models.py:67
 msgid "Email"
 msgstr "E-Mail"
 
-#: models.py:78 models.py:187 templates/portal/base.html:81
-#: templates/portal/contact-form.html:23
+#: models.py:78 models.py:187
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -180,51 +199,43 @@ msgstr "Schadenskategorien"
 msgid "Menu"
 msgstr "Menü"
 
-#: templates/portal/base.html:87
-msgid "Feedback"
-msgstr "Feedback"
-
-#: templates/portal/base.html:93
-msgid "Damage Report"
-msgstr "Schadensmeldung"
-
-#: templates/portal/base.html:103
+#: templates/portal/base.html:81
 msgid "Internet"
 msgstr "Internet"
 
-#: templates/portal/base.html:110
+#: templates/portal/base.html:88
 msgid "User"
 msgstr "Benutzer"
 
-#: templates/portal/base.html:111
+#: templates/portal/base.html:89
 msgid "Password"
 msgstr "Passwort"
 
-#: templates/portal/base.html:112
+#: templates/portal/base.html:90
 msgid "Login"
 msgstr "Anmelden"
 
-#: templates/portal/base.html:122
+#: templates/portal/base.html:100
 msgid "Options"
 msgstr "Optionen"
 
-#: templates/portal/base.html:140
+#: templates/portal/base.html:118
 msgid "Font Size"
 msgstr "Schriftgröße"
 
-#: templates/portal/base.html:143
+#: templates/portal/base.html:121
 msgid "decrease"
 msgstr "Verringern"
 
-#: templates/portal/base.html:147
+#: templates/portal/base.html:125
 msgid "increase"
 msgstr "Vergrößern"
 
-#: templates/portal/base.html:151
+#: templates/portal/base.html:129
 msgid "reset"
 msgstr "Zurücksetzen"
 
-#: templates/portal/contact-form.html:73
+#: templates/portal/contact-form.html:74
 msgid "Submit"
 msgstr "Absenden"
 
@@ -233,33 +244,37 @@ msgid "Success"
 msgstr "Erfolgreich"
 
 #: templates/portal/contact-success.html:26
-msgid "The message was sent successfully"
+msgid "The message was sent successfully."
 msgstr "Die Nachricht wurde erfolgreich versand."
 
-#: templates/portal/site.html:65 templates/portal/site.html.py:67
+#: templates/portal/contact-success.html:27
+msgid "back"
+msgstr "zurück"
+
+#: templates/portal/site.html:66 templates/portal/site.html.py:68
 msgid "Play"
 msgstr "Abspielen"
 
-#: templates/portal/site.html:71 templates/portal/site.html.py:73
+#: templates/portal/site.html:72 templates/portal/site.html.py:74
 msgid "Pause"
 msgstr "Pausieren"
 
-#: templates/portal/site.html:77 templates/portal/site.html.py:79
+#: templates/portal/site.html:78 templates/portal/site.html.py:80
 msgid "Stop"
 msgstr "Stoppen"
 
-#: templates/portal/site.html:83 templates/portal/site.html.py:85
+#: templates/portal/site.html:84 templates/portal/site.html.py:86
 msgid "Mute"
 msgstr "Stummschalten"
 
-#: templates/portal/site.html:89 templates/portal/site.html.py:91
+#: templates/portal/site.html:90 templates/portal/site.html.py:92
 msgid "Unmute"
 msgstr "Stummschalten deaktivieren"
 
-#: templates/portal/site.html:95 templates/portal/site.html.py:106
+#: templates/portal/site.html:96 templates/portal/site.html.py:107
 msgid "Volume"
 msgstr "Lautstärke"
 
-#: templates/portal/site.html:100 templates/portal/site.html.py:102
+#: templates/portal/site.html:101 templates/portal/site.html.py:103
 msgid "Maximum"
 msgstr "Maximum"

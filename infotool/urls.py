@@ -27,8 +27,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', portal_views.IndexView.as_view(), name='index'),
-    url(r'^powered-by/$', portal_views.PoweredByView.as_view()),
-    url(r'^infoscreen/$', booking_views.InfoscreenView.as_view(), name='index'),
+    url(r'^submit/feedback/(?P<current_site_id>\d+)/$', portal_views.submit_feedback, name='feedback'),
+    url(r'^submit/report/(?P<current_site_id>\d+)/$', portal_views.submit_report, name='report'),
+    url(r'^$', portal_views.IndexView.as_view(), name='index'),
+    url(r'^powered-by/$', portal_views.PoweredByView.as_view(), name='powered_by'),
+    url(r'^infoscreen/$', booking_views.InfoscreenView.as_view(), name='infoscreen'),
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
@@ -36,13 +39,11 @@ urlpatterns = patterns('',
 )
 
 site_pattern = patterns('',
-    url(r'(?P<pk>\d+)/', portal_views.SiteView.as_view(), ),
+    url(r'(?P<pk>\d+)/', portal_views.SiteView.as_view(), name='site'),
 )
 
 urlpatterns += i18n_patterns('',
-    url(r'^$', portal_views.IndexView.as_view(), name='index'),
-    url(r'site/', include(site_pattern, namespace='site'), ),
-    url(r'feedback/$', portal_views.FeedbackView.as_view()),
-    url(r'damage-report/$', portal_views.DamageReportView.as_view()),
-    url(r'(feedback|damage-report)/success/$', portal_views.FormSuccessView.as_view()),
+    url(r'^$', portal_views.IndexView.as_view(), name='lang_index'),
+    url(r'site/', include(site_pattern), ),
+    url(r'(?P<pk>\d+)/success/$', portal_views.FormSuccessView.as_view(), name='success'),
 )

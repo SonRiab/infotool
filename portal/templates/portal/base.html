@@ -72,28 +72,6 @@
                         {% endfor %}
                     </ul>
                 </nav>
-                <ul id="options-wrapper">
-                    <li>
-                        <span>
-                            <a href="javascript:;" data-id="contact"
-                               onclick="toggleSubNavigation(this);">{% trans "Contact" %}</a>
-                        </span>
-                        <ul id="sub-contact">
-                            <li>
-                            <span>
-                                <a id="link-feedback" {% if is_feedback_selected == True %}class="selected"{% endif %}
-                                   href="/{{ LANGUAGE_CODE }}/feedback/">{% trans 'Feedback' %}</a>
-                            </span>
-                            </li>
-                            <li>
-                            <span>
-                                <a id="link-damage-report" {% if is_damage_report_selected == True %}class="selected"{% endif %}
-                                   href="/{{ LANGUAGE_CODE }}/damage-report/">{% trans 'Damage Report' %}</a>
-                            </span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
                 <ul id="internet-form">
                     <li>
                     <span>
@@ -156,7 +134,7 @@
                 </ul>
                 <ul id="powered-by">
                     <li>
-                        <span><a href="/powered-by/" alt="powered by">powered by Beuth Hochschule Berlin</a></span>
+                        <span><a href="{% url 'powered_by' %}" alt="powered by">powered by Beuth Hochschule Berlin</a></span>
                     </li>
                 </ul>
             {% endblock %}

@@ -23,37 +23,39 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class GenericContactForm(forms.Form):
-    subject = forms.CharField(label=_(u'Subject'),
+    subject = forms.CharField(label=_('Subject'),
                               max_length=100)
-    #name = forms.CharField(label=_(u'Name'),
-    #                       max_length=100,
-    #                       help_text=_(u'Required'))
-    #mail = forms.EmailField(label=_(u'E-Mail'),
-    #                        help_text=_(u'Required'))
-    message = forms.CharField(label=_(u'Message'),
+    name = forms.CharField(label=_('Name'),
+                           max_length=100,
+                           required=False,
+                           help_text=_('Optional'))
+    mail = forms.EmailField(label=_('E-Mail'),
+                            required=False,
+                            help_text=_('Optional'))
+    message = forms.CharField(label=_('Message'),
                               widget=forms.Textarea,
-                              help_text=_(u'Required'))
+                              help_text=_('Required'))
 
     def send_mail(self):
-        category = Category.objects.filter(id=self.cleaned_data[u'subject']).first()
+        category = Category.objects.filter(id=self.cleaned_data['subject']).first()
         subject = category.name
-        #name = self.cleaned_data['name']
-        #mail = self.cleaned_data['mail']
+        name = self.cleaned_data['name']
+        mail = self.cleaned_data['mail']
         message = self.cleaned_data['message']
-        #body = _(u'Name: %s\nEmail: %s\nMessage:\n%s') % (name, mail, message)
-        body = message
-        contact = "%s %s <%s>" % (category.contact.prename, category.contact.name, category.contact.email)
-        send_mail(subject, body, u'rene@p-pchen.de', (contact,), fail_silently=False)
-        print("send mail\nto: %s\nsubject: %s\nmessage:\n%s" % (contact, subject, body))
+        body = _('Name: %(name)\nEmail: %(mail)\nMessage:\n%(message)') % {'name': name, 'mail': mail, 'message': message}
+        #body = message
+        contact = '%s %s <%s>' % (category.contact.prename, category.contact.name, category.contact.email)
+        send_mail(subject, body, 'rene@p-pchen.de', (contact,), fail_silently=False)
+        print 'send mail\nto: %s\nsubject: %s\nmessage:\n%s' % (contact, subject, body)
 
 
 class FeedbackForm(GenericContactForm):
     categories = FeedbackCategory.objects.filter(
         is_visible=True,
         language__language_code=get_language().split('-')[0]
-    ).order_by(u'name')
+    ).order_by('name')
     subject = forms.ChoiceField(
-        label=_(u'Subject'),
+        label=_('Subject'),
         widget=forms.Select,
         choices=categories.values_list('id', 'name'))
 
@@ -62,8 +64,8 @@ class DamageReportForm(GenericContactForm):
     categories = DamageCategory.objects.filter(
         is_visible=True,
         language__language_code=get_language().split('-')[0]
-    ).order_by(u'name')
+    ).order_by('name')
     subject = forms.ChoiceField(
-        label=_(u'Subject'),
+        label=_('Subject'),
         widget=forms.Select,
         choices=categories.values_list('id', 'name'))

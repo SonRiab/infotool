@@ -29,11 +29,11 @@
     {% if is_selected == True and sub_nav_items %}
         class="selected" href="javascript:;" onclick="toggleSubNavigation(this);"
     {% elif is_selected == True %}
-        class="selected" href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}"
+        class="selected" href="{% url 'site' nav_item.id %}"
     {% elif sub_nav_items %}
         href="javascript:;" onclick="toggleSubNavigation(this);"
     {% else %}
-        href="/{{ LANGUAGE_CODE }}/site/{{ nav_item.id }}"
+        href="{% url 'site' nav_item.id %}"
     {% endif %}
         >{{ nav_item.title }}</a>
 {% endif %}
