@@ -19,17 +19,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib import admin
 from tinymce import models as tinymce_models
+from filebrowser.fields import FileBrowseField
 from django.utils.translation import ugettext_lazy as _
-
-
-def validate_ogg_file(value):
-    if not value.name.endswith(u'.ogg'):
-        raise ValidationError(u'No supported file extension')
-
-
-def validate_mp3_file(value):
-    if not value.name.endswith(u'.mp3'):
-        raise ValidationError(u'No supported file extension')
 
 
 class Language(models.Model):
@@ -117,17 +108,19 @@ class Site(models.Model):
     is_visible = models.BooleanField(verbose_name=_(u'Visible'),
                                      default=False,)
     is_special = models.BooleanField(default=False,)
-    audio_file_1 = models.FileField(verbose_name=_(u'Audio File (mp3)'),
-                                    upload_to=u'audio/',
-                                    validators=[validate_mp3_file],
-                                    blank=True,
-                                    help_text=_(u'mp3 files have native support in Internet Explorer, Chrome, Safari '
+    audio_file_1 = FileBrowseField('Audio File (mp3)',
+                                   directory=u'audio/',
+                                   blank=True,
+                                   extensions=[".mp3"],
+                                   max_length=255,
+                                   help_text=_(u'mp3 files have native support in Internet Explorer, Chrome, Safari '
                                                u'and could be used in Flash as fallback.'),)
-    audio_file_2 = models.FileField(verbose_name=_(u'Audio File (ogg)'),
-                                    upload_to=u'audio/',
-                                    validators=[validate_ogg_file],
-                                    blank=True,
-                                    help_text=_(u'ogg files have native support in Firefox and Opera.'),)
+    audio_file_2 = FileBrowseField('Audio File (ogg)',
+                                   directory=u'audio/',
+                                   blank=True,
+                                   extensions=[".ogg"],
+                                   max_length=255,
+                                   help_text=_(u'ogg files have native support in Firefox and Opera.'),)
 
     class Meta:
         verbose_name = _(u'Site')
